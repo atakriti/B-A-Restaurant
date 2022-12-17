@@ -4,6 +4,8 @@ import "dotenv/config";
 import cors from "cors"
 // ===============
 import User from "./user.js"
+import Products from "./Products.js";
+import multer from "multer"
 // import Chat from "./chat.js"
 let app = express()
 app.use(cors())
@@ -27,6 +29,17 @@ app.put("/pushChat/:to", async (req, res) => {
         $set:{messageSent:true}
     }).then(result => res.json(result))
 })
+app.put("/pushChatAdmin/:to", async (req, res) => {
+    await User.findByIdAndUpdate({"_id":req.params.to}, {
+        $push: { chat: req.body },
+        $set:{messageSent:false}
+    }).then(result => res.json(result))
+})
+app.put("/messageSentOff/:id", async (req, res) => {
+    await User.findByIdAndUpdate({ "_id": req.params.id }, {
+        $set:{messageSent:false}
+    }).then(result => res.json(result))
+})
 app.put("/pushCart/:to", async (req, res) => {
     await User.findByIdAndUpdate({ "_id": req.params.to }, {
         $push: { cart: req.body },
@@ -36,5 +49,23 @@ app.put("/pushCart/:to", async (req, res) => {
 app.put("/pushBook/:to", async (req, res) => {
     await User.findByIdAndUpdate({ "_id": req.params.to }, {
         $set:{book:req.body}
+    }).then(result => res.json(result))
+})
+// =========================== Products ===================
+let upload = multer({
+    dest:"./productsImages"
+})
+app.use("/productsImages", express.static("./productsImages"));
+
+app.post("/addProduct", upload.single("image"), async (req, res) => {
+    let {name,ing,type,price,quan,rate} = req.body
+    await Products.create({
+        name,
+        ing,
+        type,
+        price,
+        quan,
+        rate,
+        image:`/productsImages/${req.file.filename}`
     }).then(result => res.json(result))
 })

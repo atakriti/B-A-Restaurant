@@ -5,7 +5,6 @@ import axios from "axios"
 import { context } from '../Context'
 function Signup() {
     let { users, setUsers, signinValue, setSigninValue } = useContext(context)
-  let usersWithoutAdmin = users.filter(item => item._id !== "639d98fe13b1053bdd4945fc") //! This is important in case changed the admin id this will damage !!!!!!
     
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
@@ -30,7 +29,7 @@ function Signup() {
     }
     let handleSubmitSignup = async (e) => {
         e.preventDefault()
-        if (usersWithoutAdmin.some(user => user.email === signupValue.email)) {
+        if (users.some(user => user.email === signupValue.email)) {
             alert("This user is allready exist !")
         }  else if (signupValue.password === rePassword) {
             await axios.post("http://localhost:4000/newUser", signupValue)
@@ -69,7 +68,7 @@ function Signup() {
        
 
 
-        if(usersWithoutAdmin.some(user => user.email === signinValue.email)) {
+        if(users.some(user => user.email === signinValue.email)) {
             navigate("/userChat")
         } else if (signinValue.email === "admin-ba@baTeam.com" && signinValue.password === "Admin123") {
               navigate("/admin")         
