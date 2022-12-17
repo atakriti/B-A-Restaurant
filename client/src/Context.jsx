@@ -11,12 +11,19 @@ function Context({ children }) {
   let [signinValue, setSigninValue] = useLocalStorage("signedin",{
     email: "",
     password:""
-})
+  })
+  let fetchingProducts = async () => {
+    let fetching = await fetch("http://localhost:4000/getProducts")
+    let json = await fetching.json()
+    return json
+  }
+  let [products,setProducts] = useState([])
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
+    fetchingProducts().then(result => setProducts(result))
   },[])
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,products,setProducts}}>{ children}</context.Provider>
   )
 }
 

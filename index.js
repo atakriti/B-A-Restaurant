@@ -51,6 +51,13 @@ app.put("/pushBook/:to", async (req, res) => {
         $set:{book:req.body}
     }).then(result => res.json(result))
 })
+app.put("/pushCommentAndRate/:to", async (req, res) => {
+    await User.findByIdAndUpdate({ "_id": req.params.to }, {
+        $set:{comment:req.body.comment,rate:req.body.rate}
+    }).then(result => res.json(result))
+})
+
+
 // =========================== Products ===================
 let upload = multer({
     dest:"./productsImages"
@@ -68,4 +75,11 @@ app.post("/addProduct", upload.single("image"), async (req, res) => {
         rate,
         image:`/productsImages/${req.file.filename}`
     }).then(result => res.json(result))
+})
+
+app.get("/getProducts", async (req, res) => {
+    await Products.find().then(result => res.json(result))
+})
+app.delete("/deleteProduct/:id", async (req, res) => {
+    await Products.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
 })

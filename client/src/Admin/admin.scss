@@ -58,12 +58,13 @@
         .usersTitle{
             display: flex;
             justify-content: space-between;
+            align-items: center;
             h4{
                 width: 11vw;
                 padding: 0.5%;
                 background-color: black;
                 color: white;
-                font-size: 1vw;
+                font-size: 0.8vw;
             }
         }
         .singleUser{
@@ -323,13 +324,111 @@
                         cursor: pointer;
                         font-size: 1vw;
                         border-radius: 10px;
+                        transition: 0.5s;
+                        &:hover{
+                        transition: 0.5s;
+                            background-color: rgb(255, 189, 65);
+                        }
                     }
                 }
                 
             }
         }
-
-
+// ============================================ 4 ===========================
+        .products{
+            h1{
+                text-align: center;
+                font-size: 2vw;
+            }
+            .productsTitle{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1%;
+                h5{
+                    width: 12vw;
+                    overflow-x: scroll;
+                    padding: 0.5%;
+                    background-color: black;
+                    color: white;
+                    font-size: 0.8vw;
+                    &::-webkit-scrollbar{
+                        display: none;
+                    }
+                }
+            }
+            span{
+                display: flex;
+                justify-content: space-between;
+                padding: 1%;
+                h4{
+                border: 1px black solid;
+                    width: 12vw;
+                    overflow-x: scroll;
+                    padding: 0.5%;
+                    &::-webkit-scrollbar{
+                        display: none;
+                    }
+                }
+                button{
+                    width: 12vw;
+                    border: none;
+                    background-color: red;
+                    outline: none;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 0.8vw;
+                    transition: 0.5s;
+                    &:hover{
+                    transition: 0.5s;
+                        background-color: rgb(255, 68, 68);
+                    }
+                }
+            }
+    }
+// ================================================= Reviews =====================
+.reviews{
+    h1{
+        text-align: center;
+        font-size: 2vw;
+    }
+    .reviewTitle{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5{
+            background-color: black;
+            font-size: 0.8vw;
+            color: white;
+            width: 14vw;
+            overflow-x: scroll;
+            padding: 0.5%;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+       
+    }
+    span{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2% 0;
+        h2{
+            width: 14vw;
+            border: 1px black solid;
+            &:empty{
+                border: none;
+            }
+            overflow-x: scroll;
+            padding: 0.5%;
+            font-size: 1vw;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+    }
+}
 
 
 

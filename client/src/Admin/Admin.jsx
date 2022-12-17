@@ -9,7 +9,7 @@ import "./admin.scss"
 import { context } from '../Context'
 import axios from 'axios'
 function Admin() {
-  let {signinValue,users} = useContext(context)
+  let {signinValue,users,products} = useContext(context)
   let [switchSections, setSwitchSections] = useState(1)
   let [colorSelectedUser,setColorSelectedUser] = useState(false)
   let [selectedUserToChat,setSelectedUserToChat] = useState()
@@ -81,11 +81,12 @@ function Admin() {
     })
 }
 
-
-
-
-
   //! ==================================== Here End the Add product =============================
+  // =============================== Preview Products ==============================
+  let handleDeleteProduct = async (item) => {
+    await axios.delete(`http://localhost:4000/deleteProduct/${item._id}`)
+  }
+  // =============================== End Preview Products ==============================
 
   return (
     <div className='admin'>
@@ -177,40 +178,44 @@ function Admin() {
             <h1>Add Product</h1>
             <div className="addProductsContainer">
               <form onSubmit={handleAddProduct} >
-                <input onChange={handleChangeProduct} value={productValue.name} placeholder='Enter name...' type="text" name="name"  />
-                <input onChange={handleChangeProduct} value={productValue.ing} placeholder='Enter ingredient...' type="text" name="ing"  />
-                <input onChange={handleChangeProduct} value={productValue.price} placeholder='Enter price' type="number" name="price" />
-                <input onChange={handleChangeProduct} value={productValue.image} className='fileInput' type="file" name="image" />
+                <input required onChange={handleChangeProduct} value={productValue.name} placeholder='Enter name...' type="text" name="name"  />
+                <input required onChange={handleChangeProduct} value={productValue.ing} placeholder='Enter ingredient...' type="text" name="ing"  />
+                <input required onChange={handleChangeProduct} value={productValue.price} placeholder='Enter price' type="number" name="price" />
+                <input required onChange={handleChangeProduct} value={productValue.image} className='fileInput' type="file" name="image" />
                 {/* =================== Types ================ */}
                 <div className="type">
                   <h3>Select the type</h3>
                   <label htmlFor="meat">
                  <h5>   Meat</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="meat" name="type" id="meat" />
+                  <input type="radio" required onChange={handleChangeProduct} value="meat" name="type" id="meat" />
                   </label>
                   <label htmlFor="dessert"> 
                  <h5> Desserts</h5>  
-                  <input type="radio" onChange={handleChangeProduct} value="dessert" name="type" id="dessert" />
+                  <input type="radio" required onChange={handleChangeProduct} value="dessert" name="type" id="dessert" />
                   </label>
                   <label htmlFor="pasta">
                  <h5>   Pasta</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="pasta" name="type" id="pasta" />
+                  <input type="radio" required onChange={handleChangeProduct} value="pasta" name="type" id="pasta" />
                   </label>
                   <label htmlFor="chicken">
                  <h5>   Chicken</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="chicken" name="type" id="chicken" />
+                  <input type="radio" required onChange={handleChangeProduct} value="chicken" name="type" id="chicken" />
                   </label>
                   <label htmlFor="vegetarian">
                  <h5>   Vegetarian</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="vegetarian" name="type" id="vegetarian" />
+                  <input type="radio" required onChange={handleChangeProduct} value="vegetarian" name="type" id="vegetarian" />
                   </label>
                   <label htmlFor="bakery">
                  <h5>   Bakery</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="bakery" name="type" id="bakery" />
+                  <input type="radio" required onChange={handleChangeProduct} value="bakery" name="type" id="bakery" />
                   </label>
                   <label htmlFor="fish">
                  <h5>   Fish</h5>
-                  <input type="radio" onChange={handleChangeProduct} value="fish" name="type" id="fish" />
+                  <input type="radio" required onChange={handleChangeProduct} value="fish" name="type" id="fish" />
+                  </label>
+                  <label htmlFor="drink">
+                 <h5>   Drink</h5>
+                  <input type="radio" required onChange={handleChangeProduct} value="drink" name="type" id="drink" />
                   </label>
                  
                 </div>
@@ -218,6 +223,49 @@ function Admin() {
                 <button>Publish</button>
             </form>
             </div>
+          </div>
+        )}
+        {/* ============================================== 4 ================================= */}
+        {switchSections === 4 && (
+          <div className="products">
+            <h1>Products</h1>
+            <div className="productsTitle">
+            <h5>Id</h5>
+              <h5>Name</h5>
+            <h5>Type</h5>
+            <h5>Delete Item</h5>
+            </div>
+            { products.length === 0 && <h1>There are no Products</h1>}
+            {products.map(item => (
+              <span>
+                <h4>{item._id}</h4>
+                <h4>{item.name}</h4>
+                <h4>{item.type}</h4>
+                <button onClick={()=>handleDeleteProduct(item)}>Delete</button>
+              </span>
+            ))}
+          </div>
+        )}
+        {/* ========================================== 5 ============================ */}
+        {switchSections === 5 && (
+          <div className="reviews">
+            <h1>Reviews</h1>
+            <div className="reviewTitle">
+              <h5>ID</h5> 
+              <h5>Name</h5> 
+            <h5>Comment</h5>
+            <h5>Rate</h5>
+            </div>
+            {users.length === 0 && <h1>There are no Reviews</h1>}
+            {users.map(user => (
+              <span>
+                <h2>{ user._id}</h2>
+                <h2>{ user.username}</h2>
+                <h2>{ user.comment}</h2>
+                <h2>{Array(user.rate).fill().map((_) => "⭐️")} ({ user.rate})</h2>
+               
+              </span>
+            ))}
           </div>
         )}
 </div>
