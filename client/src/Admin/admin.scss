@@ -339,6 +339,7 @@
             h1{
                 text-align: center;
                 font-size: 2vw;
+                margin-bottom: 2%;
             }
             .productsTitle{
                 display: flex;
@@ -346,7 +347,7 @@
                 align-items: center;
                 padding: 1%;
                 h5{
-                    width: 12vw;
+                    width: 17vw;
                     overflow-x: scroll;
                     padding: 0.5%;
                     background-color: black;
@@ -363,7 +364,7 @@
                 padding: 1%;
                 h4{
                 border: 1px black solid;
-                    width: 12vw;
+                    width: 17vw;
                     overflow-x: scroll;
                     padding: 0.5%;
                     &::-webkit-scrollbar{
@@ -391,8 +392,54 @@
     h1{
         text-align: center;
         font-size: 2vw;
+        margin-bottom: 2%;
     }
     .reviewTitle{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5{
+            background-color: black;
+            font-size: 0.8vw;
+            color: white;
+            width: 17vw;
+            overflow-x: scroll;
+            padding: 0.5%;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+       
+    }
+    span{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2% 0;
+        h2{
+            width: 17vw;
+            border: 1px black solid;
+            &:empty{
+                border: none;
+            }
+            overflow-x: scroll;
+            padding: 0.5%;
+            font-size: 1vw;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+    }
+}
+
+// ============================ Bookings ===========================
+.bookings{
+    h1{
+        text-align: center;
+        font-size: 2vw;
+        margin-bottom: 2%;
+    }
+    .bookingsTitle{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -429,10 +476,66 @@
         }
     }
 }
+// ======================================= Archive ======================
+.archive{
+    position: relative;
+    h1{
+        text-align: center;
+        font-size: 2vw;
+        margin-bottom: 2%;
+    }
+    .archiveTitle{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5{
+            background-color: black;
+            font-size: 0.8vw;
+            color: white;
+            width: 17vw;
+            overflow-x: scroll;
+            padding: 0.5%;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+       
+    }
+    span{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2% 0;
+        h2{
+            width: 17vw;
+            border: 1px black solid;
+            &:empty{
+                border: none;
+            }
+            overflow-x: scroll;
+            padding: 0.5%;
+            font-size: 1vw;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+    }
+    .archiveTotal{
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
 
-
-
-
+        background-color: black;
+        width: 84.4%;
+        margin-left: auto;
+        text-align: center;
+        h6{
+            color: white;
+            font-size: 3vw;
+        }
+    }
+}
 
 
 

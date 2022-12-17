@@ -42,8 +42,7 @@ app.put("/messageSentOff/:id", async (req, res) => {
 })
 app.put("/pushCart/:to", async (req, res) => {
     await User.findByIdAndUpdate({ "_id": req.params.to }, {
-        $push: { cart: req.body },
-        $push:{cartArchive:req.body}
+        $push: { cart: req.body,cartArchive:req.body }
     }).then(result => res.json(result))
 })
 app.put("/pushBook/:to", async (req, res) => {

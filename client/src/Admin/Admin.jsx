@@ -10,6 +10,7 @@ import { context } from '../Context'
 import axios from 'axios'
 function Admin() {
   let {signinValue,users,products} = useContext(context)
+  console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
   let [switchSections, setSwitchSections] = useState(1)
   let [colorSelectedUser,setColorSelectedUser] = useState(false)
   let [selectedUserToChat,setSelectedUserToChat] = useState()
@@ -87,6 +88,34 @@ function Admin() {
     await axios.delete(`http://localhost:4000/deleteProduct/${item._id}`)
   }
   // =============================== End Preview Products ==============================
+  //! ======================================= Archive =====================================
+
+
+  let totalPrice = 0;
+
+  for (let i = 0; i < users.length; i++) {
+    let currentObject = users[i];
+    let currentCart = currentObject.cartArchive;
+  
+    for (let j = 0; j < currentCart.length; j++) {
+      let item = currentCart[j];
+      let price = item.price;
+      let quantity = item.quan;
+      let subTotal = price * quantity;
+      totalPrice += subTotal;
+    }
+  }
+  
+  
+
+
+
+
+
+
+
+
+
 
   return (
     <div className='admin'>
@@ -99,7 +128,7 @@ function Admin() {
         <span className={switchSections === 4 && "selected"} onClick={()=>setSwitchSections(4)}><AiFillFolderOpen/><h3>All Products</h3></span>
         <span className={switchSections === 5 && "selected"} onClick={()=>setSwitchSections(5)}><MdOutlinePreview/><h3>Customers Reviews</h3></span>
         <span className={switchSections === 6 && "selected"} onClick={()=>setSwitchSections(6)}><BsFillCalendarDateFill/><h3>Reservations</h3></span>
-        <span className={switchSections === 7 && "selected"} onClick={()=>setSwitchSections(7)}><MdUpdate/><h3>Archives</h3></span>
+        <span className={switchSections === 7 && "selected"} onClick={()=>setSwitchSections(7)}><MdUpdate/><h3>Archive</h3></span>
 
       </div>
       {/* =============== right ========== */}
@@ -266,6 +295,52 @@ function Admin() {
                
               </span>
             ))}
+          </div>
+        )}
+        {/* ======================================== 6 ================================ */}
+        {switchSections === 6 && (
+          <div className="bookings">
+            <h1>Reservations</h1>
+            <div className="bookingsTitle">
+              <h5>ID</h5>
+              <h5>Name</h5>
+              <h5>Date</h5>
+              <h5>Time</h5>
+              <h5>Persons</h5>
+            </div>
+            {users.map(user => (
+              <span>
+                <h2>{ user._id}</h2>
+                <h2>{ user.username}</h2>
+                <h2>{ user.book.date}</h2>
+                <h2>{ user.book.time}</h2>
+                <h2>{ user.book.persons}</h2>
+              </span>
+            ))}
+          </div>
+        )}
+        {/* ================================= 7 ========================= */}
+        {switchSections === 7 && (
+          <div className="archive">
+            <h1>Archive</h1>
+            <div className="archiveTitle">
+            <h5>Name</h5>
+            <h5>Type</h5>
+            <h5>Quantity</h5>
+              <h5>Price</h5>
+              
+            </div>
+            {users.map(user => user.cartArchive.map(item => (
+              <span>
+                <h2>{ item.name}</h2>
+                <h2>{ item.type}</h2>
+                <h2>{ item.quan}</h2>
+                <h2>{ item.price}€</h2>
+              </span>
+            )))}
+            <div className="archiveTotal">
+              <h6>Winnings: {totalPrice}€</h6>
+            </div>
           </div>
         )}
 </div>
