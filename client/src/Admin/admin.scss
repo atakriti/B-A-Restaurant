@@ -1,0 +1,229 @@
+.admin{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    .adminLeft{
+        width: 15%;
+        border: 1px black solid;
+        
+        span{
+            display: flex;
+            align-items: center;
+            gap: 10%;
+            background-color: rgb(173, 173, 173);
+            padding: 4%;
+            margin-bottom: 3%;
+            color: white;
+            cursor: pointer;
+            svg{
+                font-size: 1.5vw;
+            }
+            h3{
+                font-size: 1vw;
+            }
+            &:first-child{
+                background-color: black;
+
+            }
+        }
+        //! ============================= When its clicked  ===================
+        .selected{
+            display: flex;
+            align-items: center;
+            gap: 10%;
+            background-color: orange;
+            padding: 4%;
+            margin-bottom: 3%;
+            color: white;
+            cursor: pointer;
+            svg{
+                font-size: 1.5vw;
+            }
+            h3{
+                font-size: 1vw;
+            }
+            &:first-child{
+                background-color: black;
+
+            }
+        }
+        //! ============================= End When its clicked  ===================
+
+    }
+    .adminRight{
+        width: 80%;
+        
+        //! ======================================= 1 ===================
+        .usersTitle{
+            display: flex;
+            justify-content: space-between;
+            h4{
+                width: 11vw;
+                padding: 0.5%;
+                background-color: black;
+                color: white;
+                font-size: 1vw;
+            }
+        }
+        .singleUser{
+            display: flex;
+            justify-content: space-between;
+            margin: 1% 0;
+            h5{
+                border: 1px black solid;
+                width: 11vw;
+                padding: 0.5%;
+                overflow-x: scroll;
+                font-size: 1vw;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+            }
+        }
+        //! ====================================== 2 ============================
+
+      .chatContainer{
+        .chatFieldAdmin{
+            display: flex;
+            justify-content: space-between;
+            .chatLeft{
+                width: 8vw;
+                
+                
+                overflow-y: scroll;
+                display: flex;
+                flex-direction: column;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+                // .colorSelectedUser{
+                //     background-color: orange;
+                //     padding: 2%;
+                //     margin-bottom: 5%;
+                //     overflow-x: scroll;
+                //     &::-webkit-scrollbar{
+                //         display: none;
+                //     }
+                // }
+                button{
+                    padding: 6% 0;
+                    margin-bottom: 5%;
+                    overflow-x: scroll;
+                    font-size: 1vw;
+                    border: none;
+                    outline: none;
+                    background-color: black;
+                    color: white;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: 0.5s;
+                    &::-webkit-scrollbar{
+                        display: none;
+                    }
+                    &:focus{
+                        background-color: orange;
+                        
+                    }
+                    &:hover{
+                        background-color: orange;
+                        transition: 0.5s;
+                    }
+                }
+            }
+            .chatTexts{
+                height: 40vw;
+                overflow-y: scroll;
+                border: 2px green solid;
+                width: 85%;
+                padding: 1%;
+                background-image: url(../images/chat-wallpaper.jpg);
+                background-size: cover;
+                border-radius: 20px 20px 0 0 ;
+                h1{
+                    color: white;
+                    font-size: 2vw;
+                }
+                .lef{
+                    display: flex;
+                    padding: 2%;
+                    width: 40%;
+                    flex-direction: column;
+                    h6{
+                        font-size: 0.8vw;
+                        margin-bottom: 2%;
+                        color: white;
+                    }
+                    p{
+                        background-color: rgb(199, 199, 199);
+                        padding: 2%;
+                        color: white;
+                        font-size: 1vw;
+                        border-radius: 10px;
+                        word-break: break-all;
+                    }
+                    h5{
+                        margin-top: 1%;
+                        font-size: 0.8vw;
+                        color: white;
+     
+                    }
+                }
+
+                .righ{
+                    display: flex;
+                    padding: 2%;
+                    width: 40%;
+                    flex-direction: column;
+                    margin-left: auto;
+                    h6{
+                        font-size: 0.8vw;
+                        margin-bottom: 2%;
+                        color: white;
+                    }
+                    p{
+                        background-color: skyblue;
+                        padding: 2%;
+                        color: white;
+                        font-size: 1vw;
+                        border-radius: 10px;
+                        word-break: break-all;
+                    }
+                    h5{
+                        margin-top: 1%;
+                        font-size: 0.8vw;
+                        color: white;
+     
+                    }
+                }
+            }
+        }
+        form{
+            width: 85%;
+            margin-left: auto;
+            border: 1px black solid;
+            display: flex;
+            input{
+                width: 90%;
+                border: none;
+                outline: none;
+                font-size: 1vw;
+                padding: 1%;
+            }
+            button{
+                width: 10%;
+                font-size: 1vw;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background-color: orange;
+                color: white;
+            }
+        }
+
+      }
+
+
+
+    }
+}
