@@ -94,11 +94,11 @@ function Admin() {
   let totalPrice = 0;
 
   for (let i = 0; i < users.length; i++) {
-    let currentObject = users[i];
-    let currentCart = currentObject.cartArchive;
+    let currentObject = users[i]; // get into each user
+    let currentCart = currentObject.cartArchive; // get into each cartArchive in each user
   
     for (let j = 0; j < currentCart.length; j++) {
-      let item = currentCart[j];
+      let item = currentCart[j]; // get into each object inside the cartArchive
       let price = item.price;
       let quantity = item.quan;
       let subTotal = price * quantity;
@@ -106,15 +106,6 @@ function Admin() {
     }
   }
   
-  
-
-
-
-
-
-
-
-
 
 
   return (

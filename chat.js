@@ -3,8 +3,8 @@ let { model, Schema } = mongoose;
 
 let Chat = new Schema({
     text: String,
-    senderName: String,
-    senderId: String,
+    from: String,
+    sender:String
 }, { timestamps: true })
 
 export default model("chat",Chat)

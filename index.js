@@ -6,6 +6,7 @@ import cors from "cors"
 import User from "./user.js"
 import Products from "./Products.js";
 import multer from "multer"
+import Pusher from "pusher"
 // import Chat from "./chat.js"
 let app = express()
 app.use(cors())
@@ -82,3 +83,28 @@ app.get("/getProducts", async (req, res) => {
 app.delete("/deleteProduct/:id", async (req, res) => {
     await Products.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
 })
+
+// ===================================== Pusher ========================
+// const pusher = new Pusher({
+//     appId: "1526633",
+//     key: "f53671d3665007b93cb0",
+//     secret: "29aab1890f706e44d816",
+//     cluster: "eu",
+//     useTLS: true
+// });
+  
+// let db = mongoose.connection
+// db.once("open", () => {
+//     console.log("DB is connected");
+//     let userCollection = db.collection("users")
+//     let changeStream = userCollection.watch()
+//     changeStream.on("change", (change) => {
+//         console.log(change);
+//         if (change.operationType === "update") {
+           
+//             pusher.trigger("updateUsers", "inserted", change)
+//         } else {
+//             console.log("There is a problem");
+//         }
+//     })
+// })
