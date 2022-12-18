@@ -18,30 +18,46 @@ function Context({ children }) {
     let json = await fetching.json()
     return json
   }
-  let [products,setProducts] = useState([])
+  let [products, setProducts] = useState([])
+  let [allChat, setAllChat] = useState([])
+  let [selectedUserToChat,setSelectedUserToChat] = useState()
+  console.log("🚀 ~ file: Context.jsx:23 ~ Context ~ allChat", allChat)
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
     fetchingProducts().then(result => setProducts(result))
 
-    // var pusher = new Pusher('f53671d3665007b93cb0', {
-    //   cluster: 'eu'
-    // });
+  
+  }, [])
 
-    // var channel = pusher.subscribe('updateUsers');
-    // channel.bind('inserted', (data) => {
-    //   alert(JSON.stringify(data));
-    // });
+  useEffect(() => {
+    var pusher = new Pusher('f53671d3665007b93cb0', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('updateUsers');
+    channel.bind('inserted', (data) => {
+      console.log("🚀 ~ file: Context.jsx:34 ~ channel.bind ~ data", data)
+      // alert(JSON.stringify(data));
+      setAllChat([...allChat, data])
+    });
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe()
+    }
+  },[allChat])
 
 
 
+  useEffect(() => {
+    fetchUsers().then(result => setUsers(result))
+  }, [selectedUserToChat])
 
-
-
-
-
-  },[])
+  useEffect(() => {
+    fetchUsers().then(result => setUsers(result))
+  }, [allChat])
+  
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,products,setProducts}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat}}>{ children}</context.Provider>
   )
 }
 

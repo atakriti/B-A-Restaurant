@@ -13,13 +13,15 @@ function UserChat() {
     let day = dateObj.getUTCDate();
     let year = dateObj.getUTCFullYear();
     let FullDate = year + "/" + month + "/" + day
-    let FullTime = new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes() + ":" +  new Date(Date.now()).getSeconds()
+    let FullTime = new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes() + ":" + new Date(Date.now()).getSeconds()
+let result = FullDate + "–" + FullTime
+    
   // ==================================== Here end the full date ===========================
    
     let [chatValue, setChatValue] = useState({
         text: "",
         from: "",
-        timeStamp: FullDate + "–" + FullTime,
+        timeStamp:result ,
         sender:""
     })
     
@@ -30,7 +32,7 @@ function UserChat() {
         setChatValue({
             text: "",
             from: "",
-            timeStamp: FullDate + "–" + FullTime,
+            timeStamp:result,
             sender:""
         })
     }
@@ -45,7 +47,7 @@ function UserChat() {
           </div>
           {/* =================== right =========== */}
           <div className="right">
-              <h1>Hello Anwar</h1>
+              <h1>Hello { findSignedin ? findSignedin.username : "Please sign in"}</h1>
               {/* ==================== chat =============== */}
               <div className="chatField">
                  {findSignedin?.chat.length === 0 && <h1>The chat is empty, no conversation</h1>}

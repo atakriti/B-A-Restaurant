@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { RiAdminFill } from "react-icons/ri"
 import { HiOutlineUsers } from "react-icons/hi"
 import { AiFillWechat,AiFillFolderOpen } from "react-icons/ai"
@@ -8,12 +8,15 @@ import {MdUpdate,MdOutlinePreview} from "react-icons/md"
 import "./admin.scss"
 import { context } from '../Context'
 import axios from 'axios'
+import Pusher from "pusher-js";
+
 function Admin() {
-  let {signinValue,users,products} = useContext(context)
+  let {signinValue,users,products,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat} = useContext(context)
+  console.log("##############################################################", allChat)
   console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
   let [switchSections, setSwitchSections] = useState(1)
-  let [colorSelectedUser,setColorSelectedUser] = useState(false)
-  let [selectedUserToChat,setSelectedUserToChat] = useState()
+  // let [colorSelectedUser, setColorSelectedUser] = useState(false)
+  
   console.log("🚀 ~ file: Admin.jsx:15 ~ Admin ~ selectedUserToChat", selectedUserToChat)
   // ==================================== Here is the full date ===========================
   let dateObj = new Date();
@@ -21,22 +24,30 @@ function Admin() {
   let day = dateObj.getUTCDate();
   let year = dateObj.getUTCFullYear();
   let FullDate = year + "/" + month + "/" + day
-  let FullTime = new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes() + ":" +  new Date(Date.now()).getSeconds()
+  let FullTime = new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes() + ":" + new Date(Date.now()).getSeconds()
+let result = FullDate + "–" + FullTime
+  
   // ==================================== Here end the full date ===========================
   //! ==================================== Here the chat =============================
+  // let [chatValue, setChatValue] = useState({
+  //     text: "",
+  //     from: "639d98fe13b1053bdd4945fc",
+  //   timeStamp: FullDate + "–" + FullTime,
+  //     sender:"Admin"
+  // })
   let [chatValue, setChatValue] = useState({
-      text: "",
-      from: "639d98fe13b1053bdd4945fc",
-    timeStamp: FullDate + "–" + FullTime,
-      sender:"Admin"
-  })
+    text: "",
+    from: "",
+  timeStamp: result,
+    sender:""
+})
   let handleSubmitChat = async (e) => {
     e.preventDefault()
-    await axios.put(`http://localhost:4000/pushChatAdmin/${selectedUserToChat._id}`, chatValue)
+    await axios.put(`http://localhost:4000/pushChatAdmin/${selectedUserToChat._id}`, {...chatValue,from:"639d98fe13b1053bdd4945fc",sender:"Admin"})
     setChatValue({
       text: "",
       from: "639d98fe13b1053bdd4945fc",
-      timeStamp: FullDate + "–" + FullTime,
+      timeStamp: result,
       sender:"Admin"
   })
  
@@ -45,8 +56,7 @@ function Admin() {
   let handleClickOnUser = async (user) => {
     await axios.put(`http://localhost:4000/messageSentOff/${user._id}`)
     setSelectedUserToChat(user)
-
-    setColorSelectedUser(true)
+    // setColorSelectedUser(true)
   }
   //! ==================================== Here end the chat =============================
   //! ==================================== Here the Add product =============================
@@ -105,8 +115,18 @@ function Admin() {
       totalPrice += subTotal;
     }
   }
-  
 
+
+  useEffect(() => {
+    fetchUsers().then(result => setUsers(result))
+  //  return () => setSelectedUserToChat(selectedUserToChat) //! alternativ way
+  }, [allChat])
+
+
+  useEffect(() => {
+    fetchUsers().then(result => setUsers(result))
+  //  return () => setSelectedUserToChat(selectedUserToChat) //! alternativ way
+  }, [selectedUserToChat])
 
   return (
     <div className='admin'>
@@ -164,13 +184,38 @@ function Admin() {
               <div className="chatTexts">
               {selectedUserToChat?.chat.length === 0 && <h1>The chat is empty, no conversation</h1>}
                 
-                {selectedUserToChat?.chat.map(singleChat => (
+                {/* {selectedUserToChat?.chat.map(singleChat => (
+                  <span className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
+                    <h6>{ singleChat.sender}</h6>
+                    <p>{singleChat.text}</p>
+                    <h5>{ singleChat.timeStamp}</h5>
+                </span>
+                ))}
+                 */}
+
+
+
+                {users.find(item => item?._id === selectedUserToChat?._id)?.chat.map(singleChat => (
                   <span className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
                     <h6>{ singleChat.sender}</h6>
                     <p>{singleChat.text}</p>
                     <h5>{ singleChat.timeStamp}</h5>
                 </span>
               ))}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               {/* <span className='lef'>
                       <h6>anwar</h6>
                       <p>this is the Left text</p>

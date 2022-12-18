@@ -7,7 +7,7 @@ import User from "./user.js"
 import Products from "./Products.js";
 import multer from "multer"
 import Pusher from "pusher"
-// import Chat from "./chat.js"
+import Chat from "./chat.js"
 let app = express()
 app.use(cors())
 app.use(express.json())
@@ -24,17 +24,41 @@ app.put("/updateUser/:id",async (req, res) => {
     await User.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // =================== Those are for Chat, Cart, Book ===========================
+// app.put("/pushChat/:to", async (req, res) => {
+//     await User.findByIdAndUpdate({"_id":req.params.to}, {
+//         $push: { chat: req.body },
+//         $set:{messageSent:true}
+//     }).then(result => res.json(result))
+// })
 app.put("/pushChat/:to", async (req, res) => {
-    await User.findByIdAndUpdate({"_id":req.params.to}, {
-        $push: { chat: req.body },
-        $set:{messageSent:true}
-    }).then(result => res.json(result))
-})
+    try {
+      let newChat = await Chat.create(req.body);
+      let updatedUser = await User.findByIdAndUpdate(
+        { _id: req.params.to },
+          { $push: { chat: newChat },$set:{messageSent:true}},
+        { new: true }
+      );
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+  
+
 app.put("/pushChatAdmin/:to", async (req, res) => {
-    await User.findByIdAndUpdate({"_id":req.params.to}, {
-        $push: { chat: req.body },
-        $set:{messageSent:false}
-    }).then(result => res.json(result))
+
+    try {
+        let newChat = await Chat.create(req.body);
+        let updatedUser = await User.findByIdAndUpdate({ _id: req.params.to }, {
+            $push: { chat: newChat },
+            $set: { messageSent: false }
+        }, { new: true });
+        res.json(updatedUser)
+    } catch (error) {
+      res.status(500).send(error.message);
+        
+    }
+    
 })
 app.put("/messageSentOff/:id", async (req, res) => {
     await User.findByIdAndUpdate({ "_id": req.params.id }, {
@@ -85,26 +109,32 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 })
 
 // ===================================== Pusher ========================
-// const pusher = new Pusher({
-//     appId: "1526633",
-//     key: "f53671d3665007b93cb0",
-//     secret: "29aab1890f706e44d816",
-//     cluster: "eu",
-//     useTLS: true
-// });
+const pusher = new Pusher({
+    appId: "1526633",
+    key: "f53671d3665007b93cb0",
+    secret: "29aab1890f706e44d816",
+    cluster: "eu",
+    useTLS: true
+});
   
-// let db = mongoose.connection
-// db.once("open", () => {
-//     console.log("DB is connected");
-//     let userCollection = db.collection("users")
-//     let changeStream = userCollection.watch()
-//     changeStream.on("change", (change) => {
-//         console.log(change);
-//         if (change.operationType === "update") {
+let db = mongoose.connection
+db.once("open", () => {
+    console.log("DB is connected");
+    let userCollection = db.collection("chats")
+    let changeStream = userCollection.watch()
+    changeStream.on("change", (change) => {
+        console.log(change);
+        let fullMessage = change.fullDocument
+        if (change.operationType === "insert") {
            
-//             pusher.trigger("updateUsers", "inserted", change)
-//         } else {
-//             console.log("There is a problem");
-//         }
-//     })
-// })
+            pusher.trigger("updateUsers", "inserted", {
+                text: fullMessage.text,
+                from: fullMessage.from,
+                sender: fullMessage.sender,
+                timeStamp:fullMessage.timeStamp
+            })
+        } else {
+            console.log("There is a problem");
+        }
+    })
+})
