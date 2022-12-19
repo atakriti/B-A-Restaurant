@@ -11,7 +11,7 @@ import axios from 'axios'
 import Pusher from "pusher-js";
 
 function Admin() {
-  let {signinValue,users,products,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat} = useContext(context)
+  let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat} = useContext(context)
   console.log("##############################################################", allChat)
   console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
   let [switchSections, setSwitchSections] = useState(1)
@@ -80,6 +80,8 @@ let result = FullDate + "–" + FullTime
       headers:{"Content-Type":"multipart/form-data"}
     })
     alert("The product is Successfully added")
+    fetchingProducts().then(result => setProducts(result))
+
     e.target.reset()
     setProductValue({
       name: "",
@@ -96,6 +98,8 @@ let result = FullDate + "–" + FullTime
   // =============================== Preview Products ==============================
   let handleDeleteProduct = async (item) => {
     await axios.delete(`http://localhost:4000/deleteProduct/${item._id}`)
+    fetchingProducts().then(result => setProducts(result))
+
   }
   // =============================== End Preview Products ==============================
   //! ======================================= Archive =====================================
