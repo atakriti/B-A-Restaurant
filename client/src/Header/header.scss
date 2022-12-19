@@ -37,12 +37,18 @@ header{
                 text-decoration: none;
                 justify-content: center;
                 color: black;
+                cursor: pointer;
                 svg{
                     font-size: 1.5vw;
                     fill: white;
+                transition: 0.5s;
+
                 }
                 &:hover{
+
                     svg{
+                transition: 0.5s;
+
                         fill: orange;
                         transform: scale(1.5);
                     }

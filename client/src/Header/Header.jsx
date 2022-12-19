@@ -31,11 +31,7 @@ function Header() {
               </Link>
 
               <div className="links_pages">
-              {isSignedIn ?
-                  (<a onClick={handleSignOut} title='Sign out'><FaSignInAlt /></a>)
-                  :
-                  (<a onClick={()=>setOpenRegister(true)} title="Sign in" ><BiUser /></a>)
-                }
+              
 
 
               <Link title='Chat direct with us' to="/userChat"><BsChatDots/></Link>
@@ -44,7 +40,12 @@ function Header() {
               <Link title="Book a table" to="/book"><SlCalender/></Link>
               <Link title="Work as a freelancer" to="/freelance"><SiCodechef/></Link>
               <Link title="About us" to="/about"><BsQuestionCircle/></Link>
-              <Link title="Home" to="/"><FiHome /></Link>
+                  <Link title="Home" to="/"><FiHome /></Link>
+                  {isSignedIn ?
+                  (<a onClick={handleSignOut} title='Sign out'><FaSignInAlt /></a>)
+                  :
+                  (<a onClick={()=>setOpenRegister(true)} title="Sign in" ><BiUser /></a>)
+                }
               </div>
               <h4>Welcome { findSignedInUser?.username}</h4>
           </div>
