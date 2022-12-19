@@ -21,7 +21,10 @@ function Context({ children }) {
   }
   let [products, setProducts] = useState([])
   let [allChat, setAllChat] = useState([])
-  let [selectedUserToChat,setSelectedUserToChat] = useState()
+  let [selectedUserToChat, setSelectedUserToChat] = useState()
+  // let [isSignedIn, setIsSignedIn] = useState(false)
+  let [isSignedIn, setIsSignedIn] = useLocalStorage("isSignedIn",false)
+  let [openRegister,setOpenRegister] = useState(false)
   console.log("🚀 ~ file: Context.jsx:23 ~ Context ~ allChat", allChat)
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
@@ -58,7 +61,7 @@ function Context({ children }) {
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister}}>{ children}</context.Provider>
   )
 }
 

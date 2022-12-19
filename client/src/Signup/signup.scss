@@ -12,6 +12,7 @@
     overflow-y: scroll;
     .signup-container{
         width: 40%;
+       
         .titles{
             width: 100%;
             display: flex;
@@ -86,7 +87,15 @@
             border-radius: 20px;
             padding: 2%;
             padding-bottom: 10%;
-            
+            article{
+                text-decoration: underline;
+                margin-top: 2%;
+                font-size: 0.8vw;
+                cursor: pointer;
+                &:hover{
+                    color: red;
+                }
+            }
             h4{
                 color: red;
                 font-size: 1vw;

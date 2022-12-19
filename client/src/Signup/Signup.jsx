@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./signup.scss"
 import axios from "axios"
 import { context } from '../Context'
 function Signup() {
-    let { users, setUsers, signinValue, setSigninValue } = useContext(context)
+    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers } = useContext(context)
     
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
@@ -64,12 +64,11 @@ function Signup() {
     let handleSubmitSignin = (e) => {
         e.preventDefault()
 
-        
-       
-
 
         if(users.some(user => user.email === signinValue.email)) {
-            navigate("/userChat")
+            setIsSignedIn(true)
+            setOpenRegister(false)
+            navigate("/")
         } else if (signinValue.email === "admin-ba@baTeam.com" && signinValue.password === "Admin123") {
               navigate("/admin")         
                 console.log("must go to admin");
@@ -78,9 +77,14 @@ function Signup() {
         }
        
     }
+    useEffect(() => {
+        fetchUsers().then(result => setUsers(result))
+    }, [switchBtn])
+    
   return (
-      <div className='signup'>
+      <div  className='signup'>
           <div className="signup-container">
+             
               {/* ===================== Titles ================== */}
               <div className="titles">
                   <button className={switchBtn === 1 && "line"} onClick={()=>setSwitchBtn(1)}>Sign in</button>
@@ -92,6 +96,7 @@ function Signup() {
                   <input required onChange={handleChangeSignin} value={signinValue.email} type="email" name="email" placeholder='Enter your E-Mail...' />
                   <input required onChange={handleChangeSignin} value={signinValue.password} type="password" name="password" placeholder='Enter your Passowrd...' />
                       <button>Sign in</button>
+                      <article onClick={() => setOpenRegister(false)}>Close</article>
               </form>
               )}
               {switchBtn === 2 && (
@@ -112,9 +117,10 @@ function Signup() {
                       <input required onChange={handleChangeSignup} value={signupValue.plz} type="text" name="plz" placeholder='Enter PLZ...' />
                       <input required onChange={handleChangeSignup} value={signupValue.tel} type="tel" name="tel" placeholder='Enter mobile-Nr...' />
                       <button >Sign up</button>
-                      
+                      <article onClick={() => setOpenRegister(false)}>Close</article>
                   </form>
               )}
+              
           </div>
     </div>
   )

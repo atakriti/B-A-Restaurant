@@ -1,29 +1,18 @@
-import Pusher from "pusher-js";
+import Home from "./Home";
 import React, { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Admin from "./Admin/Admin";
 import { context } from "./Context";
-import Home from "./Home";
+import Header from "./Header/Header"
 import "./style.scss"
 import UserChat from "./UserChat/UserChat";
 
 function App() {
 
-  let {signinValue,users,products,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat} = useContext(context)
-
-
-  
-
-
-
-
-
-
-
-
 
   return (
     <div className="App">
+      <Header/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/admin" element={<Admin/>}/>
