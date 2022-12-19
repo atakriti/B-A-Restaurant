@@ -110,9 +110,9 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 
 // ===================================== Pusher ========================
 const pusher = new Pusher({
-    appId: "1526633",
-    key: "f53671d3665007b93cb0",
-    secret: "29aab1890f706e44d816",
+    appId: process.env.APPID,
+    key: process.env.KEY,
+    secret: process.env.SECRET,
     cluster: "eu",
     useTLS: true
 });
