@@ -6,17 +6,19 @@ import { context } from "./Context";
 import Header from "./Header/Header"
 import "./style.scss"
 import UserChat from "./UserChat/UserChat";
+import Freelance from "./Freelance/Freelance";
 
 function App() {
 
 
   return (
     <div className="App">
-      <Header/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/admin" element={<Admin/>}/>
-        <Route path="/userChat" element={<UserChat/>}/>
+        <Route path="/userChat" element={<UserChat />} />
+        <Route path="/freelance" element={<Freelance />} />
+        
       </Routes>
     </div>
   );

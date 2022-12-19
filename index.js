@@ -8,6 +8,7 @@ import Products from "./Products.js";
 import multer from "multer"
 import Pusher from "pusher"
 import Chat from "./chat.js"
+import Freelance from "./freelance.js"
 let app = express()
 app.use(cors())
 app.use(express.json())
@@ -107,7 +108,28 @@ app.get("/getProducts", async (req, res) => {
 app.delete("/deleteProduct/:id", async (req, res) => {
     await Products.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
 })
-
+// ================================ Freelance =============================
+app.post("/freelance/:id",upload.single("image"), async (req, res) => {
+    let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+    await Freelance.create({
+        meal,
+        price,
+        tel,
+        type,
+        image: `/productsImages/${req.file.filename}`,
+        userId: req.params.id,
+        showAll,
+        description,
+        address,
+        chefName
+      }).then(result => res.json(result))
+})
+app.get("/getFreelance", async (req, res) => {
+    await Freelance.find().then(result => res.json(result))
+})
+app.delete("/deleteFreelanceMeal/:id", async (req, res) => {
+    await Freelance.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
+})
 // ===================================== Pusher ========================
 const pusher = new Pusher({
     appId: process.env.APPID,

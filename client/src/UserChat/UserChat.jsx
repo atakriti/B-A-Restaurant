@@ -3,6 +3,7 @@ import { ImUserTie } from "react-icons/im"
 import "./userChat.scss"
 import {context} from "../Context"
 import axios from 'axios'
+import Header from '../Header/Header'
 function UserChat() {
     let {signinValue,users} = useContext(context)
     let findSignedin = users.find(user => user.email === signinValue.email)
@@ -38,6 +39,8 @@ let result = FullDate + "–" + FullTime
     }
   return (
       <div className='userChat'>
+      <Header/>
+
           {/* ============== Left ============ */}
           <div className="left">
               <div className="chatWithChef">

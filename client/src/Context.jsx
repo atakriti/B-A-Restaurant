@@ -20,17 +20,30 @@ function Context({ children }) {
     return json
   }
   let [products, setProducts] = useState([])
+
+  let fetchingFreelance = async () => {
+    let fetching = await fetch("http://localhost:4000/getFreelance")
+    let json = await fetching.json()
+    return json
+  }
+  let [freelanceMeals,setFreelanceMeals] = useState([])
+
+
+
+
   let [allChat, setAllChat] = useState([])
   let [selectedUserToChat, setSelectedUserToChat] = useState()
   // let [isSignedIn, setIsSignedIn] = useState(false)
   let [isSignedIn, setIsSignedIn] = useLocalStorage("isSignedIn",false)
   let [openRegister,setOpenRegister] = useState(false)
   console.log("🚀 ~ file: Context.jsx:23 ~ Context ~ allChat", allChat)
+
+
+
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
     fetchingProducts().then(result => setProducts(result))
-
-  
+    fetchingFreelance().then(result => setFreelanceMeals(result))
   }, [])
 
   useEffect(() => {
@@ -61,7 +74,7 @@ function Context({ children }) {
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals}}>{ children}</context.Provider>
   )
 }
 

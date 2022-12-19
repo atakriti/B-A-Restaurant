@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { context } from './Context'
+import Header from './Header/Header'
 import LandingPage from './LandingPage/LandingPage'
 import Menu from './Menu/Menu'
 import SectionsLanding from './SectionsLanding/SectionsLanding'
@@ -10,7 +11,8 @@ function Home() {
 
   return (
     <div>
-      {openRegister &&  <Signup/>  }
+      {openRegister && <Signup />}
+      <Header/>
       {/* <Signup/> */}
       <LandingPage />
       <Menu />

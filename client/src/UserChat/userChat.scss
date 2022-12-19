@@ -1,8 +1,9 @@
 .userChat{
     display: flex;
+    justify-content: flex-end;
     padding: 2%;
     .left{
-        width: 30%;
+        width: 20%;
         padding: 1%;
         .chatWithChef{
             display: flex;
