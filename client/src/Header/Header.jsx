@@ -16,7 +16,7 @@ function Header() {
     let findSignedInUser = users.find(user => user.email === signinValue.email)
     console.log("🚀 ~ file: Header.jsx:16 ~ Header ~ isSignedIn", isSignedIn)
     let handleSignOut = () => {
-        setOpenRegister(true)
+        // setOpenRegister(true)
         setIsSignedIn(false)
         setSigninValue({
             email: "",

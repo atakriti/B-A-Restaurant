@@ -15,6 +15,7 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-pageflip": "^2.0.3",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "sass": "^1.56.2",

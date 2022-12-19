@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { context } from './Context'
 import LandingPage from './LandingPage/LandingPage'
 import Menu from './Menu/Menu'
+import SectionsLanding from './SectionsLanding/SectionsLanding'
 import Signup from './Signup/Signup'
 
 function Home() {
@@ -12,7 +13,8 @@ function Home() {
       {openRegister &&  <Signup/>  }
       {/* <Signup/> */}
       <LandingPage />
-    <Menu/>
+      <Menu />
+      <SectionsLanding/>
     </div>
   )
 }
