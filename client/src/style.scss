@@ -3,3 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+::-webkit-scrollbar{
+    background:white;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(36, 36, 36);
+
+}
