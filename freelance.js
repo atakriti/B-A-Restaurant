@@ -4,7 +4,7 @@ let { model, Schema } = mongoose
 
 
 
-let special = new Schema({
+let Freelance = new Schema({
     meal: String,
     price: Number,
     tel: Number,
@@ -17,4 +17,4 @@ let special = new Schema({
     chefName:String
 })
 
-export let Special = model("special", special)
+export default model("freelance", Freelance)
