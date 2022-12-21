@@ -5,7 +5,10 @@ import axios from "axios"
 import { context } from '../Context'
 function Signup() {
     let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers } = useContext(context)
-    
+    let [changeValueSignin, setChangeValueSignin] = useState({
+        email: "",
+        password:""
+    })
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
     let navigate = useNavigate()
@@ -59,21 +62,30 @@ function Signup() {
     }
     // ============================ Sign in ======================
     let handleChangeSignin = (e) => {
-        setSigninValue({...signinValue,[e.target.name]:e.target.value})
+        setChangeValueSignin({...changeValueSignin,[e.target.name]:e.target.value})
     }
     let handleSubmitSignin = (e) => {
         e.preventDefault()
 
 
-        if(users.some(user => user.email === signinValue.email)) {
+        if(users.some(user => user.email === changeValueSignin.email && user.password === changeValueSignin.password)) {
             setIsSignedIn(true)
+            setSigninValue({
+                email: changeValueSignin.email,
+                password:changeValueSignin.password
+            })
             setOpenRegister(false)
             navigate("/")
         } else if (signinValue.email === "admin-ba@baTeam.com" && signinValue.password === "Admin123") {
-              navigate("/admin")         
-                console.log("must go to admin");
+            navigate("/admin") 
+            setSigninValue({
+                email: "",
+                password:""
+            })
+            setOpenRegister(false)
+            
         }else{
-            alert("This user is not registered")
+            alert("Username or Password is not correct !")
         }
        
     }
@@ -93,8 +105,8 @@ function Signup() {
               {/* ======================= Form ==================== */}
               {switchBtn === 1 && (
                   <form onSubmit={handleSubmitSignin}>
-                  <input required onChange={handleChangeSignin} value={signinValue.email} type="email" name="email" placeholder='Enter your E-Mail...' />
-                  <input required onChange={handleChangeSignin} value={signinValue.password} type="password" name="password" placeholder='Enter your Passowrd...' />
+                  <input required onChange={handleChangeSignin} value={changeValueSignin.email} type="email" name="email" placeholder='Enter your E-Mail...' />
+                  <input required onChange={handleChangeSignin} value={changeValueSignin.password} type="password" name="password" placeholder='Enter your Passowrd...' />
                       <button>Sign in</button>
                       <article onClick={() => setOpenRegister(false)}>Close</article>
               </form>

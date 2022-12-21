@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Admin from "./Admin/Admin";
 import Header from "./Header/Header"
-import "./style.scss"
 import UserChat from "./UserChat/UserChat";
 import Freelance from "./Freelance/Freelance";
 import Signup from "./Signup/Signup";
@@ -13,6 +12,8 @@ import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 
 
+import Cart from "./Cart/Cart";
+import "./style.scss"
 
 function App() {
 
@@ -29,6 +30,7 @@ let {openRegister} = useContext(context)
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
 
+        <Route path="/cart" element={<Cart/>} />
         
       </Routes>
     </div>

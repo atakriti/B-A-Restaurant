@@ -38,6 +38,7 @@ header{
                 justify-content: center;
                 color: black;
                 cursor: pointer;
+                position: relative;
                 svg{
                     font-size: 1.5vw;
                     fill: white;
@@ -53,6 +54,22 @@ header{
                         transform: scale(1.5);
                     }
                 }
+               .cart_length{
+                   position: absolute;
+                   top: -50%;
+                   right: -50%;
+                   color: white;
+                   background-color: green;
+                //    width: 50%;
+                //    height: 50%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   font-size: 1.2vw;
+                   border-radius: 50%;
+                   padding: 0 30%;
+                   z-index: 1;
+               }
             }
         }
         h4{
