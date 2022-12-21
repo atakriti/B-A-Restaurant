@@ -10,6 +10,7 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
+    "@emailjs/browser": "^3.9.1",
     "pusher-js": "^7.6.0",
     "react": "^18.2.0",
     "react-advanced-banner": "^1.0.2",
