@@ -135,11 +135,13 @@ function Food() {
                       <li>{item}</li>
                     ))}
                   </ul>
-                  <div className="increment">
-                    <button onClick={handleMinus}>-</button>
-                    <h6>{foundMealState?.quan}</h6>
-                    <button onClick={handlePlus}>+</button>
-                  </div>
+                  {isSignedIn && (
+                     <div className="increment">
+                     <button onClick={handleMinus}>-</button>
+                     <h6>{foundMealState?.quan}</h6>
+                     <button onClick={handlePlus}>+</button>
+                   </div>
+                 )}
                   <h5>Total {foundMealState?.quan * foundMealState?.price}</h5>
                   <button
                     disabled={isSignedIn === false}

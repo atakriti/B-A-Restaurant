@@ -76,7 +76,7 @@ function Signup() {
             })
             setOpenRegister(false)
             navigate("/")
-        } else if (signinValue.email === "admin-ba@baTeam.com" && signinValue.password === "Admin123") {
+        } else if (changeValueSignin.email === "admin-ba@baTeam.com" && changeValueSignin.password === "Admin123") {
             navigate("/admin") 
             setSigninValue({
                 email: "",
