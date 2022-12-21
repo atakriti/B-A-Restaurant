@@ -56,7 +56,7 @@
               
                 .text_bottom{
                     h4{
-                        color: green;
+                        color: orange;
                         text-align: center;
                         font-size: 0.9vw;
                     }
@@ -158,6 +158,10 @@
                             padding: 1% 0;
                             background-color: orange;
                             color: white;
+                            &:disabled{
+                                background-color: gray;
+                                color: red;
+                            }
                         }
                     }
                 }

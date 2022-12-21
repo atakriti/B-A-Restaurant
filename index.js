@@ -24,6 +24,7 @@ app.get("/getAllUsers",async (req, res) => {
 app.put("/updateUser/:id",async (req, res) => {
     await User.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
+
 // =================== Those are for Chat, Cart, Book ===========================
 // app.put("/pushChat/:to", async (req, res) => {
 //     await User.findByIdAndUpdate({"_id":req.params.to}, {
@@ -107,6 +108,9 @@ app.get("/getProducts", async (req, res) => {
 })
 app.delete("/deleteProduct/:id", async (req, res) => {
     await Products.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
+})
+app.put("/updateProduct/:id", async (req, res) => {
+    await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // ================================ Freelance =============================
 app.post("/freelance/:id",upload.single("image"), async (req, res) => {
