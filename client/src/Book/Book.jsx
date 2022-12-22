@@ -151,7 +151,16 @@ function Book() {
                                      </label>
                               )
                              
-                          ))}
+                              ))}
+                               {/* ============================ Persons ================ */}
+                               <label htmlFor="persons">
+                                   <h3 className='h3Persons'>Persons</h3>
+                                   <div className="btns_persons">
+                                       <h6 onClick={handleMinus}>-</h6>
+                                       <h4>{ bookValue.persons}</h4>
+                                       <h6 onClick={handlePlus}>+</h6>
+                                   </div>
+                               </label>
                           </div>
                     //       <div className="time">
                               
