@@ -8,6 +8,8 @@ import Freelance from "./Freelance/Freelance";
 import Signup from "./Signup/Signup";
 import { context } from "./Context";
 import Food from "./Food/Food";
+import AboutUs from "./AboutUs/AboutUs";
+import Contact from "./Contact/Contact";
 import Cart from "./Cart/Cart";
 import "./style.scss"
 import Book from "./Book/Book";
@@ -24,6 +26,9 @@ let {openRegister} = useContext(context)
         <Route path="/userChat" element={<UserChat />} />
         <Route path="/freelance" element={<Freelance />} />
         <Route path="/food/:type" element={<Food />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+
         <Route path="/cart" element={<Cart/>} />
         <Route path="/book" element={<Book/>} />
         

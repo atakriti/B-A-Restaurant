@@ -16,6 +16,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
     "dotenv": "^16.0.3",
+    "@emailjs/browser": "^3.9.1",
     "emoji-picker-react": "^4.4.7",
     "moment": "^2.29.4",
     "pusher-js": "^7.6.0",

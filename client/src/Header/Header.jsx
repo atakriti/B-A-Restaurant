@@ -39,7 +39,7 @@ function Header() {
               <Link title="Go to your Cart" to="/cart"><h3 className='cart_length'>{findSignedInUser?.cart.length} </h3><FaShoppingCart/></Link>
               <Link title="Book a table" to="/book"><SlCalender/></Link>
               <Link title="Work as a freelancer" to="/freelance"><SiCodechef/></Link>
-              <Link title="About us" to="/about"><BsQuestionCircle/></Link>
+              <Link title="About us" to="/aboutUs"><BsQuestionCircle/></Link>
                   <Link title="Home" to="/"><FaHome /></Link>
                   {isSignedIn ?
                   (<a onClick={handleSignOut} title='Sign out'><FaSignInAlt /></a>)
