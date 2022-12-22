@@ -3,7 +3,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10% 0;
+    padding: 3% 0;
+    width: 95%;
+    margin-left: auto;
     a{
         display: flex;
         width: 20%;
@@ -18,7 +20,7 @@
         align-items: center;
         width: 50%;
         background-color: rgba(0, 0, 0, 0.26);
-        border-radius: 5%;
+        border-radius: 10px;
         padding: 1%;
         h1{
             color: gray;
@@ -34,7 +36,7 @@
             border-bottom: 1px solid gray;
             background-color: transparent;
             color: white;
-            font-size:1.5vw;
+            font-size:1vw;
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
             appearance: none;
@@ -45,7 +47,7 @@
             padding: 1%;
             margin-bottom: 2%;
             border: 1px gray solid;
-            border-radius: 2%;
+            border-radius: 10px;
             outline: none;
             background-color: transparent;
             resize: none;
@@ -55,11 +57,15 @@
         button{
             width: 15%;
             padding: 1% 0;
-            .sendButton{
-                color: rgb(249, 249, 249);
-                font-size: 1.5vw;
-                cursor: pointer;
+            font-size: 1vw;
+            color: rgb(249, 249, 249);
+            background-color: orange;
+            cursor: pointer;
+            &:disabled{
+                background-color: gray;
+                color: red;
             }
+            
         }
         
         

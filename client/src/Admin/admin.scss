@@ -77,6 +77,7 @@
                 padding: 0.5%;
                 overflow-x: scroll;
                 font-size: 1vw;
+                color: white;
                 &::-webkit-scrollbar{
                     display: none;
                 }
@@ -159,7 +160,7 @@
             .chatTexts{
                 height: 40vw;
                 overflow-y: scroll;
-                border: 2px green solid;
+                // border: 2px green solid;
                 width: 85%;
                 padding: 1%;
                 background-image: url(../images/chat-wallpaper.jpg);
@@ -254,6 +255,7 @@
                 text-align: center;
                 font-size: 2vw;
                 margin-bottom: 2%;
+                color: white;
             }
             .addProductsContainer{
                 display: flex;
@@ -340,6 +342,7 @@
                 text-align: center;
                 font-size: 2vw;
                 margin-bottom: 2%;
+                color: white;
             }
             .productsTitle{
                 display: flex;
@@ -368,6 +371,7 @@
                     overflow-x: scroll;
                     padding: 0.5%;
                     font-size: 1vw;
+                    color: white;
                     &::-webkit-scrollbar{
                         display: none;
                     }
@@ -394,6 +398,7 @@
         text-align: center;
         font-size: 2vw;
         margin-bottom: 2%;
+        color: white;
     }
     .reviewTitle{
         display: flex;
@@ -420,6 +425,7 @@
         h2{
             width: 17vw;
             border: 1px black solid;
+            color: white;
             &:empty{
                 border: none;
             }
@@ -439,6 +445,8 @@
         text-align: center;
         font-size: 2vw;
         margin-bottom: 2%;
+        color: white;
+
     }
     .bookingsTitle{
         display: flex;
@@ -465,6 +473,8 @@
         h2{
             width: 14vw;
             border: 1px black solid;
+            color: white;
+
             &:empty{
                 border: none;
             }
@@ -480,10 +490,13 @@
 // ======================================= Archive ======================
 .archive{
     position: relative;
+
     h1{
         text-align: center;
         font-size: 2vw;
         margin-bottom: 2%;
+    color: white;
+
     }
     .archiveTitle{
         display: flex;
@@ -510,6 +523,8 @@
         h2{
             width: 17vw;
             border: 1px black solid;
+    color: white;
+
             &:empty{
                 border: none;
             }
@@ -521,21 +536,7 @@
             }
         }
     }
-    .archiveTotal{
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-
-        background-color: black;
-        width: 84.4%;
-        margin-left: auto;
-        text-align: center;
-        h6{
-            color: white;
-            font-size: 3vw;
-        }
-    }
+   
 }
 
 

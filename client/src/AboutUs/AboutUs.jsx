@@ -19,12 +19,12 @@ function AboutUs() {
       <p>We are a team of creative professionals who are passionate about designing and building beautiful and functional websites and applications.</p>
       <div className="team-photo-container">
         <span>
-          <a href=""><img src={img} alt="Our team" /></a>
+          <a target={'_blank'} href="https://www-baha.vercel.app/"><img src={img} alt="Our team" /></a>
           <h3>Baha Alden Hasim</h3>
         </span>
 
-        <span><a href=""><img src={img2} alt="Our team" /></a>
-          <h3>Baha Alden Hasim</h3>
+        <span><a target={'_blank'} href="https://anwar-dev.com/"><img src={img2} alt="Our team" /></a>
+          <h3>Anwar Takriti</h3>
         </span>
       </div>
       <button onClick={() => setShowTeam(true)}>
