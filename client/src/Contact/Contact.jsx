@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import Logo from "../images/logo.png"
 import "./Contact.scss"
 import emailjs from '@emailjs/browser';
-import AOS from "aos";
+// import AOS from "aos";
 import "aos/dist/aos.css";
 
 
@@ -28,12 +28,9 @@ function Contact() {
         });
         setValue({name:"",tel:"",email:"",message:""})
     }
-    useEffect(() => {
-        AOS.init({ duration: 2000 });
-    }, [])
-
+  
     return (
-        <article data-aos="fade-left">
+        <article >
             <Header home="Home"  menu="Menu" book="Book" cart="Cart" special="Special" />
             <div className='contact'>
                 <a ><img src={Logo} alt="" /></a>
@@ -44,8 +41,8 @@ function Contact() {
                     <input required value={value.email} onChange={handleChange} type="email" name="email" id="" placeholder='Enter your E-Mail...' />
                     <textarea required value={value.message} onChange={handleChange}  name="message" id="" cols="30" rows="10" placeholder='Write your message here...' />
                     <button disabled={value.message === ""}>
-                    <span className='liquidText' >Send</span>
-                        <div class="liquid"></div>
+                    <span className='sendButton' >Send</span>
+                        
                     </button>
                 </form>
     </div>

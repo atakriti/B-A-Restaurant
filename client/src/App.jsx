@@ -10,8 +10,6 @@ import { context } from "./Context";
 import Food from "./Food/Food";
 import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
-
-
 import Cart from "./Cart/Cart";
 import "./style.scss"
 
