@@ -12,6 +12,7 @@ import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import Cart from "./Cart/Cart";
 import "./style.scss"
+import Book from "./Book/Book";
 
 function App() {
 
@@ -29,6 +30,7 @@ let {openRegister} = useContext(context)
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/book" element={<Book/>} />
         
       </Routes>
     </div>
