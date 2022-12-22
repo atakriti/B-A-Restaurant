@@ -4,24 +4,34 @@ import {BsPaypal} from "react-icons/bs"
 import Header from '../Header/Header'
 import "./cart.scss"
 import axios from 'axios'
+import Review from "../Review/Review"
 function Cart() {
 
 
-    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue,fetchUsers, setUsers,products} = useContext(context)
+    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue,fetchUsers, setUsers,products,showReview,setShowReview} = useContext(context)
     let findSignedInUser = users.find(found => found.email === signinValue.email)
 
     let [foundUserState, setFoundUserState] = useState(findSignedInUser)
 
-    let [selectedMeal,setSelectedMeal] = useState()
+    // let [selectedMeal,setSelectedMeal] = useState()
   let [isPopup, setIsPopup] = useState(false)
-  let handlePay = async () => {
-      setIsPopup(true)
-      setTimeout(() => setIsPopup(false), 5000)
+    let handlePay = async () => {
+        if (isSignedIn === true) {
+            setIsPopup(true)
+      setTimeout(() => setIsPopup(false), 3000)
 
       setFoundUserState({ ...foundUserState, cart: [] })
       await axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: [] })
       fetchUsers().then(result => setUsers(result))
+      if (foundUserState.comment === undefined && foundUserState.rate === undefined) {
+          setTimeout(() => setShowReview(true), 3000)
+      }
+        } else {
+            alert("You are not signed in")
+      }
+    
 
+      
       
     }
     let total = findSignedInUser?.cart.reduce((prev, curr) => prev + curr?.quan * curr?.price, 0)
@@ -51,6 +61,9 @@ function Cart() {
     
   return (
       <div className='cart_'>
+          {showReview && (
+          <Review/>
+          )}
           <Header />
           <div className="cart_container">
               {/* ===================== Left =============== */}

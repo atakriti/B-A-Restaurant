@@ -38,10 +38,7 @@ function Contact() {
                     <input required value={value.tel} onChange={handleChange} type="number" name="tel" id="" placeholder='Enter your mobile number...' />
                     <input required value={value.email} onChange={handleChange} type="email" name="email" id="" placeholder='Enter your E-Mail...' />
                     <textarea required value={value.message} onChange={handleChange}  name="message" id="" cols="30" rows="10" placeholder='Write your message here...' />
-                    <button disabled={value.message === ""}>
-                    <span className='sendButton' >Send</span>
-                        
-                    </button>
+                    <button disabled={value.message === ""}>Send</button>
                 </form>
     </div>
       </article>

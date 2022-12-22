@@ -27,6 +27,7 @@ function Context({ children }) {
     return json
   }
   let [freelanceMeals,setFreelanceMeals] = useState([])
+  let [showReview,setShowReview] = useState(false)
 
 
 
@@ -74,7 +75,7 @@ function Context({ children }) {
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview}}>{ children}</context.Provider>
   )
 }
 

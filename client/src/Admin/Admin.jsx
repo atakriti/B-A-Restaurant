@@ -4,13 +4,16 @@ import { HiOutlineUsers } from "react-icons/hi"
 import { AiFillWechat,AiFillFolderOpen } from "react-icons/ai"
 import { GiHotMeal } from "react-icons/gi"
 import { BsFillCalendarDateFill } from "react-icons/bs"
-import {MdUpdate,MdOutlinePreview} from "react-icons/md"
+import { MdUpdate, MdOutlinePreview } from "react-icons/md"
+import { FaHome } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import "./admin.scss"
 import { context } from '../Context'
 import axios from 'axios'
 import Pusher from "pusher-js";
 
 function Admin() {
+  let navigate = useNavigate()
   let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat} = useContext(context)
   console.log("##############################################################", allChat)
   console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
@@ -144,6 +147,7 @@ let result = FullDate + "–" + FullTime
         <span className={switchSections === 5 && "selected"} onClick={()=>setSwitchSections(5)}><MdOutlinePreview/><h3>Customers Reviews</h3></span>
         <span className={switchSections === 6 && "selected"} onClick={()=>setSwitchSections(6)}><BsFillCalendarDateFill/><h3>Reservations</h3></span>
         <span className={switchSections === 7 && "selected"} onClick={()=>setSwitchSections(7)}><MdUpdate/><h3>Archive</h3></span>
+        <span className={switchSections === 7 && "selected"} onClick={()=>navigate("/")}><FaHome /><h3>Home</h3></span>
 
       </div>
       {/* =============== right ========== */}
@@ -327,13 +331,15 @@ let result = FullDate + "–" + FullTime
             </div>
             {users.length === 0 && <h1>There are no Reviews</h1>}
             {users.map(user => (
-              <span>
+              user.comment !== undefined && user.rate !== undefined && (
+                <span>
                 <h2>{ user._id}</h2>
                 <h2>{ user.username}</h2>
                 <h2>{ user.comment}</h2>
                 <h2>{Array(user.rate).fill().map((_) => "⭐️")} ({ user.rate})</h2>
                
               </span>
+             )
             ))}
           </div>
         )}
@@ -349,20 +355,22 @@ let result = FullDate + "–" + FullTime
               <h5>Persons</h5>
             </div>
             {users.map(user => (
-              <span>
+              user.book.date !== undefined && user.book.time !== undefined && (
+                 <span>
                 <h2>{ user._id}</h2>
                 <h2>{ user.username}</h2>
                 <h2>{ user.book.date}</h2>
                 <h2>{ user.book.time}</h2>
                 <h2>{ user.book.persons}</h2>
               </span>
+             )
             ))}
           </div>
         )}
         {/* ================================= 7 ========================= */}
         {switchSections === 7 && (
           <div className="archive">
-            <h1>Archive</h1>
+            <h1>Archive (Winnings: {totalPrice})</h1>
             <div className="archiveTitle">
             <h5>Name</h5>
             <h5>Type</h5>
@@ -378,9 +386,7 @@ let result = FullDate + "–" + FullTime
                 <h2>{ item.price}€</h2>
               </span>
             )))}
-            <div className="archiveTotal">
-              <h6>Winnings: {totalPrice}€</h6>
-            </div>
+           
           </div>
         )}
 </div>
