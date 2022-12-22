@@ -10,6 +10,7 @@ import { context } from "./Context";
 import Food from "./Food/Food";
 import Cart from "./Cart/Cart";
 import "./style.scss"
+import Book from "./Book/Book";
 
 function App() {
 
@@ -24,6 +25,7 @@ let {openRegister} = useContext(context)
         <Route path="/freelance" element={<Freelance />} />
         <Route path="/food/:type" element={<Food />} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/book" element={<Book/>} />
         
       </Routes>
     </div>

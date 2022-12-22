@@ -1,0 +1,134 @@
+.book_{
+    .book_container{
+        width: 95%;
+        margin-left: auto;
+        form{
+            width: 100%;
+            padding: 1%;
+           h1{
+               color: white;
+               font-size: 2vw;
+               text-align: center;
+               
+           }
+           h2{
+               color: white;
+               font-size: 1.5vw;
+               text-align: center;
+               margin: 2% 0;
+           }
+          .form_container{
+              display: flex;
+              width: 100%;
+              justify-content: space-around;
+                // ===================== Date ==================
+            .date{
+                width: 58%;
+                // border: 1px red solid;
+         
+                *{
+                    color: white;
+                    
+                }
+            }
+            // ======================== Time ===============
+            .time{
+                width: 40%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                border-left: 1px white solid;
+                label{
+                    border-bottom: 1px white solid;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 45%;
+                    margin-bottom: 1%;
+                    h3{
+                        color: white;
+                        font-size: 1vw;
+                    }
+                    .h3Persons{
+                        color: orange;
+                        
+                    }
+                    .btns_persons{
+                        width: 40%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        h6{
+                            width: 25%;
+                            background-color: orange;
+                            font-size: 1vw;
+                            color: white;
+                            margin: 0;
+                            text-align: center;
+                            cursor: pointer;
+                        }
+                        h4{
+                            font-size: 1vw;
+                            color: white;
+                            margin: 0;
+                        }
+                    }
+                    input{
+                        width: 1vw;
+                        height: 1vw;
+                      
+                    }
+                }
+            }
+          }
+          .submitBtn{
+              background-color: orange;
+              outline: none;
+              border: none;
+              width: 20%;
+              padding: 0.5% 0;
+              font-size: 1vw;
+              color: white;
+              margin: 2% auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              &:disabled{
+                  background-color: gray;
+                  color: red;
+              }
+          }
+        }
+    }
+}
+// ================================== Style Date picker ==========================
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
+    h4{
+        color: white;
+    }
+}
+.css-u0soqy-MuiPickerStaticWrapper-root{
+    div{
+        background-color: transparent;
+
+    }
+}
+.css-6t5f1e-MuiDayPicker-monthContainer{
+    *{
+        color: black !important;
+        &:hover{
+            color: white !important;
+        }
+        &:focus{
+            color: white !important;
+        }
+        
+    }
+}
+.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+    background-color: rgb(190, 190, 190) !important;
+    color: white !important;
+}
+.MuiDialogActions-root,.css-1hbyad5-MuiTypography-root {
+    display: none !important;
+}
