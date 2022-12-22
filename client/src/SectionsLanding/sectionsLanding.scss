@@ -19,7 +19,7 @@
             .anchorImg{
                 display: flex;
                 width: 50%;
-                border: 1px black solid;
+                border: 1px white solid;
                 overflow: hidden;
                 img{
                     width: 100%;
@@ -39,6 +39,7 @@
 
                 p{
                     font-size: 1.2vw;
+                    color: white;
                 }
                 a{
                     font-size: 1vw;
