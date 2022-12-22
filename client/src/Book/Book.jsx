@@ -7,6 +7,8 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import "./book.scss"
 import { context } from '../Context';
 import axios from 'axios';
+import userLogo from "../images/user.png"
+
 function Book() {
     let { users, isSignedIn ,signinValue,fetchUsers,setUsers} = useContext(context)
     let findUser = users.find((user) => user.email === signinValue.email);
@@ -17,7 +19,23 @@ function Book() {
         time: "",
         persons:1
     })
-    console.log("🚀 ~ file: Book.jsx:20 ~ Book ~ bookValue", bookValue)
+    console.log("🚀 ~ file: Book.jsx:20 ~ Book ~ bookValue", bookValue.date) 
+    // =============================== Get the current time and date ======================
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    let FullDate = year + "-" + month + "-" + day
+    console.log("🚀 ~ file: Book.jsx:27 ~ Book ~ FullDate", FullDate)
+    let FullTime = new Date(Date.now()).getHours() + ":00"
+
+    // ============================= Expired Date =====================
+    // let { time, date, persons } = foundUserState?.book
+    // console.log("🚀 ~ file: Book.jsx:23 ~ Book ~ date", date)
+    let [isExpired, setIsExpired] = useState(false);
+    const expirationDate = new Date(`${foundUserState?.book.date}T${foundUserState?.book.time}`);
+    const currentDate = new Date();
+    // ================================= End Expired Date ================
     let handlePlus = () => {
         if (bookValue.persons > 15) {
             return;
@@ -60,10 +78,30 @@ function Book() {
         }
        
     }
+
+
+
+
     useEffect(() => {
         setFoundUserState(findUser);
-      }, [users]);
+    }, [users]);
     
+    useEffect(() => {
+        if (currentDate > expirationDate) {
+            setIsExpired(true);
+            axios.put(`http://localhost:4000/pushBook/${foundUserState?._id}`, {
+                date: "",
+                time: "",
+                persons:1
+            })
+            setFoundUserState({
+                ...foundUserState, book: {
+                    date: "",
+                    time: "",
+                    persons:1
+            }})
+          }
+    },[])
   return (
       <div className='book_'>
           <Header />
@@ -92,12 +130,14 @@ function Book() {
                   </div>
                   {/* ======================================= Time ======================= */}
                       {bookValue?.date !== "" && (
-                           <div className="time">
+                          <div className="time">
+                              
                            {/* ============= */}
-                           <label htmlFor="8">
-                               <h3>08:00</h3>
-                           <input  onChange={(e) => setBookValue({...bookValue,time:e.target.value})} disabled={filterBooked?.some(item => item?.book?.time === "8:00")} type="radio" name="time" id="8" value="08:00" />
-                           </label>
+                                    <label htmlFor="8">
+                                    <h3>08:00</h3>
+                                <input  onChange={(e) => setBookValue({...bookValue,time:e.target.value})} disabled={filterBooked?.some(item => item?.book?.time === "8:00") } type="radio" name="time" id="8" value="08:00" />
+                                </label>
+                          
                            {/* ============= */}
                            <label htmlFor="9">
                                <h3>09:00</h3>
@@ -182,6 +222,23 @@ function Book() {
                   </div>
                   <button className='submitBtn' disabled={isSignedIn === false}>{ isSignedIn === true ? "Book" : "Please Sign in"}</button>
               </form>
+          </div>
+          {/* ============================== Reviews ====================== */}
+          <div className="reviews">
+              <h1>Customes Reviews</h1>
+              <div className="reviews_container">
+               {users.map(item => (
+                  item.comment !== undefined && item.rate !== undefined && (
+                    <div className="userReview">
+                    <a><img src={userLogo} alt="" /></a>
+                    <h1>{item.username}</h1>
+                          <span>{Array(item.rate).fill().map(() => <h3>⭐️</h3>)}</span>
+                          <h4>{ item.comment}</h4>
+                </div>
+                  )
+              ))}
+              </div>
+              
           </div>
     </div>
   )
