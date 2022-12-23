@@ -13,6 +13,7 @@ import Contact from "./Contact/Contact";
 import Cart from "./Cart/Cart";
 import "./style.scss"
 import Book from "./Book/Book";
+import Footer from "./Footer/Footer"
 
 function App() {
 
@@ -33,6 +34,7 @@ let {openRegister} = useContext(context)
         <Route path="/book" element={<Book/>} />
         
       </Routes>
+      <Footer/>
     </div>
   );
 }

@@ -1,0 +1,115 @@
+
+
+
+#footer{
+    background:black;
+    height: auto;
+    width: 100%;
+    padding-top: 3%;
+  
+}
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background:rgba(108, 108, 108, 0.232)!important;
+}
+.footer-content h3{
+    font-size: 1.5vw;
+    font-weight: 500;
+    text-transform: capitalize;
+    // line-height: 3rem;
+    color: white;
+    padding: 1% 0;
+
+}
+.footer-content p{
+    width: 30%;
+    margin: 1% auto;
+    font-size: 1vw;
+    color: #cacdd2;
+}
+
+//======================icone ========================
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // margin: 1% 0 3% 0;
+    margin: 0;
+    padding: 1% 0;
+    width: 10%;
+
+    li{
+        border: 1px white solid;
+        border-radius: 50%;
+        padding: 2%;
+        // padding: 0 2%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: alias;
+        svg{
+            fill: white;
+            font-size: 1vw;
+        }
+    }
+}
+
+
+
+
+
+
+
+.footer-bottom{
+  display: flex;
+    background: #000;
+    // width: 100vw;
+    width: 100%;
+    padding: 2%;
+    text-align: center;
+}
+
+.footer-bottom p{
+    float: left;
+    font-size: 1vw;
+    text-transform: capitalize;
+ }
+ .footer-bottom p a{
+   color:#44bae8;
+   font-size: 1vw;
+   text-decoration: none;
+ }
+ .footer-bottom span{
+     text-transform: uppercase;
+     opacity: .4;
+     font-weight: 200;
+ }
+
+
+
+// ====================== Media query ==============
+@media only screen and (max-width:800px) {
+    .footer-content h3{
+        font-size: 3vw;
+        }
+        .footer-content p{
+            font-size: 2vw;
+        }
+        .socials{
+            width: 40%;
+            li{
+                svg{
+                    font-size: 3vw;
+                }
+            }
+        }
+        .footer-bottom p a{
+            font-size: 2vw;
+        }
+}

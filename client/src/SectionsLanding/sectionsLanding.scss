@@ -53,4 +53,67 @@
 
        
     }
+    // ================================= Sections 2 ==============
+    .fixedImg2{
+        background-image: url(../images/dessert.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position:center;
+        background-attachment: fixed;
+        padding: 10%;
+        margin: 2% 0;
+    }
+    .sections2{
+        margin: 2% 0;
+        .android{
+            width: 50%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+
+            .androidImg{
+                display: flex;
+                width: 50%;
+                overflow: hidden;
+                border-radius: 20px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 20px;
+                        transition: 0.5s;
+                    &:hover{
+                        transition: 0.5s;
+                        transform: scale(1.5) rotate(10deg);
+                        filter: grayscale(1.5);
+                    }
+                }
+            }
+            .androidText{
+                width: 48%;
+                padding: 5%;
+                p{
+                    font-size: 1vw;
+                    color: white;
+                }
+                a{
+                    text-decoration: none;
+                    background-color: orange;
+                    color: white;
+                    width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 2% 0;
+                    font-size: 0.9vw;
+                    border-radius:10px;
+                    transition: 0.5s;
+                    &:hover{
+                        transition: 0.5s;
+                        background-color: rgb(177, 115, 0);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -2,17 +2,22 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./baner.scss"
-import test from "../images/test.jpg"
+// import test from "../images/test.jpg"
+import juices from "../images/c.jpg"
+import dessert from "../images/dessert.jpg" 
+import fish from "../images/fish.jpg"
+import chicken from "../images/chicken.jpg"
+import pasta from "../images/Pasta.jpg"
 function Baner() {
   return (
   <div className="slider-main">
 <div className="slider">
 <Carousel fade>
-      <Carousel.Item interval={600}>
+      <Carousel.Item interval={800}>
         
           <img className='d-block w-100'
 
-            src={test}
+            src={juices}
 
             alt="First slide"
           />
@@ -24,11 +29,11 @@ function Baner() {
           </h3>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={600}>
+      <Carousel.Item interval={800}>
         
           <img className='d-block w-100'
 
-            src={test}
+            src={dessert}
 
             alt="Second slide"
           />
@@ -38,11 +43,11 @@ function Baner() {
           </h3>
         </Carousel.Caption>
       </Carousel.Item >
-      <Carousel.Item interval={600}>
+      <Carousel.Item interval={800}>
         
           <img className='d-block w-100'
 
-            src={test}
+            src={fish}
 
             alt="Third slide"
           />
@@ -52,11 +57,11 @@ function Baner() {
           </h3>
         </Carousel.Caption>
       </Carousel.Item >
-      <Carousel.Item interval={600}>
+      <Carousel.Item interval={800}>
         
           <img className='d-block w-100'
 
-            src={test}
+            src={chicken}
 
             alt="Fourth slide"
           />
@@ -66,11 +71,11 @@ function Baner() {
           </h3>
         </Carousel.Caption>
       </Carousel.Item >
-      <Carousel.Item interval={600}>
+      <Carousel.Item interval={800}>
         
           <img className='d-block w-100'
 
-            src={test}
+            src={pasta}
 
             alt="Fifth slide"
           />

@@ -39,8 +39,7 @@ function Book() {
 
     let parseFullDate = Number(FullDate.split("-")[2])
     let parseDateValue = Number(bookValue.date.split("-")[2])
-    console.log("🚀++++++++++++", parseDateValue)
-    console.log("-----------------------------", parseFullDate)
+    
 
     // ============================= Expired Date =====================
     // let { time, date, persons } = foundUserState?.book
