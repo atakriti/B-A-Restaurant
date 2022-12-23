@@ -46,6 +46,9 @@ app.put("/pushChat/:to", async (req, res) => {
     }
   });
   
+app.delete("/deleteChat/:id", async (req, res) => {
+      await Chat.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
+  })
 
 app.put("/pushChatAdmin/:to", async (req, res) => {
 

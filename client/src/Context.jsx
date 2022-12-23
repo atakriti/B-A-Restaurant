@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useRef, useState } from 'react'
 import useLocalStorage from "use-local-storage"
 import Pusher from 'pusher-js'
 // import "dotenv/config";
@@ -39,7 +39,7 @@ function Context({ children }) {
   let [openRegister,setOpenRegister] = useState(false)
   console.log("🚀 ~ file: Context.jsx:23 ~ Context ~ allChat", allChat)
 
-
+let scrollIntoViewRef = useRef(null)
 
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
@@ -72,10 +72,11 @@ function Context({ children }) {
 
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
+    scrollIntoViewRef?.current?.scrollIntoView({behavior: 'smooth' })
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview,scrollIntoViewRef}}>{ children}</context.Provider>
   )
 }
 

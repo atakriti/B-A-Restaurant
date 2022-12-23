@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ImUserTie } from "react-icons/im"
 import "./userChat.scss"
 import {context} from "../Context"
 import axios from 'axios'
 import Header from '../Header/Header'
 function UserChat() {
-    let {signinValue,users} = useContext(context)
+    let {signinValue,users,scrollIntoViewRef,fetchUsers,setUsers} = useContext(context)
     let findSignedin = users.find(user => user.email === signinValue.email)
+    let [foundUserState,setFoundUserState] = useState(findSignedin)
     console.log("🚀 ~ file: UserChat.jsx:8 ~ UserChat ~ findSignedin", findSignedin)
   // ==================================== Here is the full date ===========================
     let dateObj = new Date();
@@ -37,6 +38,16 @@ let result = FullDate + "–" + FullTime
             sender:""
         })
     }
+    let handleDeleteChat = async (item) => {
+        let filterChats = foundUserState.chat.filter(it => it._id !== item._id)
+        setFoundUserState({...foundUserState,chat:filterChats})
+        await axios.delete(`http://localhost:4000/deleteChat/${item._id}`)
+        await axios.put(`http://localhost:4000/updateUser/${findSignedin._id}`, { ...foundUserState, chat: filterChats })
+        fetchUsers().then((result) => setUsers(result));
+    }
+    useEffect(() => {
+        setFoundUserState(findSignedin)
+    },[users])
   return (
       <div className='userChat'>
       <Header/>
@@ -47,6 +58,7 @@ let result = FullDate + "–" + FullTime
                   <ImUserTie />
                   <h2>Chat with Admin</h2>
               </div>
+                  <h6>Double click to delete the chat text</h6>
           </div>
           {/* =================== right =========== */}
           <div className="right">
@@ -55,7 +67,7 @@ let result = FullDate + "–" + FullTime
               <div className="chatField">
                  {findSignedin?.chat.length === 0 && <h1>The chat is empty, no conversation</h1>}
                   {findSignedin?.chat.map(item => (
-                          <span className={item.from === "639d98fe13b1053bdd4945fc" ? "leftText" : "rightText"}>
+                          <span onDoubleClick={()=>handleDeleteChat(item)} ref={scrollIntoViewRef}  className={item.from === "639d98fe13b1053bdd4945fc" ? "leftText" : "rightText"}>
                           <h6>{item.from === "639d98fe13b1053bdd4945fc" ? "Admin" : findSignedin.username}</h6>
                           <p>{ item.text}</p>
                           <h5>{ item.timeStamp}</h5>

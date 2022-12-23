@@ -24,6 +24,14 @@
             }
 
         }
+        h6{
+            color: white;
+            background-color: red;
+            padding: 4%;
+            margin-top: 4%;
+            border-radius: 10px;
+            font-size: 1.2vw;
+        }
     }
     .right{
         width: 70%;
@@ -140,6 +148,9 @@
                     font-size: 3vw;
                 }
             }
+            h6{
+                font-size: 3vw;
+            }
         }
         .right{
             width: 100%;
@@ -147,7 +158,7 @@
                 font-size: 3vw;
             }
             .chatField{
-                height: 75vh;
+                height: 65vh;
                 &::-webkit-scrollbar{
                     display: none;
                 }

@@ -547,3 +547,24 @@
 
     }
 }
+
+// // ================================
+@media only screen and (max-width:800px) {
+    .admin{
+        position: relative;
+        &::after{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            content: "This works only on desktop";
+            color: white;
+            font-size: 5vw;
+            text-align: center;
+            padding-top: 5%;
+        }
+        .adminLeft,.adminRight{
+            display: none;
+        }
+    }
+}

@@ -14,7 +14,7 @@ import Pusher from "pusher-js";
 
 function Admin() {
   let navigate = useNavigate()
-  let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat} = useContext(context)
+  let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat,scrollIntoViewRef} = useContext(context)
   console.log("##############################################################", allChat)
   console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
   let [switchSections, setSwitchSections] = useState(1)
@@ -61,6 +61,8 @@ let result = FullDate + "–" + FullTime
     setSelectedUserToChat(user)
     // setColorSelectedUser(true)
   }
+
+
   //! ==================================== Here end the chat =============================
   //! ==================================== Here the Add product =============================
   let [productValue, setProductValue] = useState({
@@ -122,6 +124,9 @@ let result = FullDate + "–" + FullTime
       totalPrice += subTotal;
     }
   }
+
+  // ============================================
+
 
 
   useEffect(() => {
@@ -189,22 +194,14 @@ let result = FullDate + "–" + FullTime
               <button className={user.messageSent && "messageSent"} key={i} onClick={()=>handleClickOnUser(user)} title={user.email}>{ user.username}</button>
           ))}
           </div>
-              <div className="chatTexts">
+              <div  className="chatTexts">
               {selectedUserToChat?.chat.length === 0 && <h1>The chat is empty, no conversation</h1>}
                 
-                {/* {selectedUserToChat?.chat.map(singleChat => (
-                  <span className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
-                    <h6>{ singleChat.sender}</h6>
-                    <p>{singleChat.text}</p>
-                    <h5>{ singleChat.timeStamp}</h5>
-                </span>
-                ))}
-                 */}
 
 
 
                 {users.find(item => item?._id === selectedUserToChat?._id)?.chat.map(singleChat => (
-                  <span className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
+                  <span ref={scrollIntoViewRef} className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
                     <h6>{ singleChat.sender}</h6>
                     <p>{singleChat.text}</p>
                     <h5>{ singleChat.timeStamp}</h5>
