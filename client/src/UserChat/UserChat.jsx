@@ -39,11 +39,14 @@ let result = FullDate + "–" + FullTime
         })
     }
     let handleDeleteChat = async (item) => {
-        let filterChats = foundUserState.chat.filter(it => it._id !== item._id)
-        setFoundUserState({...foundUserState,chat:filterChats})
-        await axios.delete(`http://localhost:4000/deleteChat/${item._id}`)
-        await axios.put(`http://localhost:4000/updateUser/${findSignedin._id}`, { ...foundUserState, chat: filterChats })
-        fetchUsers().then((result) => setUsers(result));
+        if (item.from === foundUserState._id) {
+            let filterChats = foundUserState.chat.filter(it => it._id !== item._id)
+            setFoundUserState({...foundUserState,chat:filterChats})
+            await axios.delete(`http://localhost:4000/deleteChat/${item._id}`)
+            await axios.put(`http://localhost:4000/updateUser/${findSignedin._id}`, { ...foundUserState, chat: filterChats })
+            fetchUsers().then((result) => setUsers(result));
+        }
+       
     }
     useEffect(() => {
         setFoundUserState(findSignedin)
@@ -58,7 +61,7 @@ let result = FullDate + "–" + FullTime
                   <ImUserTie />
                   <h2>Chat with Admin</h2>
               </div>
-                  <h6>Double click to delete the chat text</h6>
+                  <h6>Delete your message by Double Click</h6>
           </div>
           {/* =================== right =========== */}
           <div className="right">

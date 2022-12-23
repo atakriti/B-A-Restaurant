@@ -25,6 +25,8 @@ app.put("/updateUser/:id",async (req, res) => {
     await User.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 
+
+
 // =================== Those are for Chat, Cart, Book ===========================
 // app.put("/pushChat/:to", async (req, res) => {
 //     await User.findByIdAndUpdate({"_id":req.params.to}, {
@@ -48,7 +50,11 @@ app.put("/pushChat/:to", async (req, res) => {
   
 app.delete("/deleteChat/:id", async (req, res) => {
       await Chat.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
-  })
+})
+//! =================== This to delete all chat from chat schema not from users
+app.delete("/deleteAllChats", async (req, res) => {
+    await Chat.deleteMany({}).then(result => res.json(result))
+})
 
 app.put("/pushChatAdmin/:to", async (req, res) => {
 

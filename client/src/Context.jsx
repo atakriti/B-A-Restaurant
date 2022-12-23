@@ -14,6 +14,12 @@ function Context({ children }) {
     email: "",
     password:""
   })
+  let [changeValueSignin, setChangeValueSignin] = useLocalStorage("ValueSignin",{
+    email: "",
+    password:""
+})
+
+
   let fetchingProducts = async () => {
     let fetching = await fetch("http://localhost:4000/getProducts")
     let json = await fetching.json()
@@ -76,7 +82,7 @@ let scrollIntoViewRef = useRef(null)
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview,scrollIntoViewRef}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview,scrollIntoViewRef,changeValueSignin, setChangeValueSignin}}>{ children}</context.Provider>
   )
 }
 

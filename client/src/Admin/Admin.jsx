@@ -14,7 +14,7 @@ import Pusher from "pusher-js";
 
 function Admin() {
   let navigate = useNavigate()
-  let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat,scrollIntoViewRef} = useContext(context)
+  let {signinValue,users,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,selectedUserToChat,setSelectedUserToChat,setAllChat,scrollIntoViewRef,changeValueSignin} = useContext(context)
   console.log("##############################################################", allChat)
   console.log("🚀 ~ file: Admin.jsx:13 ~ Admin ~ users", users)
   let [switchSections, setSwitchSections] = useState(1)
@@ -62,7 +62,10 @@ let result = FullDate + "–" + FullTime
     // setColorSelectedUser(true)
   }
 
-
+  let handleDeleteAllChat = async () => {
+    await axios.delete("http://localhost:4000/deleteAllChats")
+    alert("The chats from the Chat Schema is now empty")
+  }
   //! ==================================== Here end the chat =============================
   //! ==================================== Here the Add product =============================
   let [productValue, setProductValue] = useState({
@@ -141,12 +144,14 @@ let result = FullDate + "–" + FullTime
   }, [selectedUserToChat])
 
   return (
-    <div className='admin'>
+    changeValueSignin.email === "admin-ba@baTeam.com" && changeValueSignin.password === "Admin123" ? (
+      <div className='admin'>
       {/* =============== */}
       <div className="adminLeft">
         <span><RiAdminFill /> <h3>Admin Dashboard</h3></span>
         <span className={switchSections === 1 && "selected"} onClick={()=>setSwitchSections(1)}><HiOutlineUsers/><h3>Customers</h3></span>
         <span className={switchSections === 2 && "selected"} onClick={()=>setSwitchSections(2)}><AiFillWechat/><h3>Chats</h3></span>
+        <span style={{backgroundColor:"red"}} onClick={handleDeleteAllChat}><h3>Delete All Chat from Chat Schema Not from users </h3></span>
         <span className={switchSections === 3 && "selected"} onClick={()=>setSwitchSections(3)}><GiHotMeal/><h3>Add Products</h3></span>
         <span className={switchSections === 4 && "selected"} onClick={()=>setSwitchSections(4)}><AiFillFolderOpen/><h3>All Products</h3></span>
         <span className={switchSections === 5 && "selected"} onClick={()=>setSwitchSections(5)}><MdOutlinePreview/><h3>Customers Reviews</h3></span>
@@ -389,6 +394,9 @@ let result = FullDate + "–" + FullTime
 </div>
      
     </div>
+    ) : (
+        <h1 className='admin_require'>Please Sign in as Admin</h1>
+   )
   )
 }
 

@@ -4,11 +4,8 @@ import "./signup.scss"
 import axios from "axios"
 import { context } from '../Context'
 function Signup() {
-    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers } = useContext(context)
-    let [changeValueSignin, setChangeValueSignin] = useState({
-        email: "",
-        password:""
-    })
+    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers,changeValueSignin, setChangeValueSignin } = useContext(context)
+    
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
     let navigate = useNavigate()
