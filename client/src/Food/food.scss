@@ -139,10 +139,14 @@
                                 padding: 1% 0;
                                 background-color: orange;
                                 color: white;
+                                &:active{
+                                    background-color: black;
+                                }
                             }
                             h6{
                                 font-size: 1vw;
                                 color: white;
+                                margin: 0;
                             }
                         }
                         h5{
@@ -162,6 +166,9 @@
                                 background-color: gray;
                                 color: red;
                             }
+                            &:active{
+                                background-color: black;
+                            }
                         }
                     }
                 }
@@ -173,15 +180,70 @@
     }
 }
 
-
-// .card.flipped .front {
-//     transform: rotateY(180deg);
-//   }
-  
-//   .card.flipped .back {
-//     transform: rotateY(0);
-//   }
-  
-// .food_box .hover:hover {
-//     transform: rotateY(-180deg);
-//   }
+// =====================================
+@media only screen and (max-width:800px) {
+    .food_{
+        .food_container{
+            width: 85%;
+            .food_box{
+                width: 100%;
+                .front_{
+                    a{
+                        img{
+                            height: 50vw;
+                        }
+                    }
+                    h1{
+                        font-size: 4vw;
+                    }
+                    .textBox_{
+                        .text_bottom{
+                            h4{
+                                font-size: 3vw;
+                            }
+                            h3{
+                                font-size: 4vw;
+                                padding: 2% 0;
+                            }
+                        }
+                    }
+                }
+                .back_{
+                    .back_container{
+                        .inner_back_container{
+                           h2{
+                               font-size: 3vw;
+                           }
+                           ul{
+                               height: 15vw;
+                               &::-webkit-scrollbar{
+                                   width: 0.3vw;
+                               }
+                               li{
+                                   font-size: 3vw;
+                               }
+                           }
+                           .increment{
+                               width: 90%;
+                               button{
+                                   font-size: 3vw;
+                               }
+                               h6{
+                                   font-size: 4vw;
+                               }
+                           }
+                           h5{
+                               font-size: 4vw;
+                           }
+                           button{
+                               font-size: 3vw;
+                               width: 70%;
+                               padding: 2% 0;
+                           }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -10,8 +10,10 @@
     }
     .sections{
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        // flex-direction: column;
+        // align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
         margin: 2% 0;
         .freelance,.book_{
             display: flex;
@@ -25,6 +27,7 @@
                     width: 100%;
                     height: 100%;
                     transition: 1s;
+                    object-fit: cover;
                     &:hover{
                         transition: 1s;
                         filter: grayscale(2);
@@ -75,12 +78,10 @@
                 display: flex;
                 width: 50%;
                 overflow: hidden;
-                border-radius: 20px;
                 img{
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    border-radius: 20px;
                         transition: 0.5s;
                     &:hover{
                         transition: 0.5s;
@@ -111,6 +112,46 @@
                     &:hover{
                         transition: 0.5s;
                         background-color: rgb(177, 115, 0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//  =================
+@media only screen and (max-width:800px) {
+    .sectionsLanding{
+        .fixedImg,.fixedImg2{
+            padding: 20%;
+        }
+        .sections{
+            .freelance,.book_{
+                width: 100%;
+                width: 85%;
+                margin-left: auto;
+                .text_{
+                    p{
+                        font-size: 3vw;
+                    }
+                    a{
+                        font-size: 3vw;
+                    }
+                }
+            }
+        }
+        .sections2{
+            width: 85%;
+            margin-left: auto;
+            .android{
+                width: 100%;
+                .androidText{
+                    p{
+                        font-size: 3vw;
+                    }
+                    a{
+                        font-size: 3vw;
+                        width: 100%;
                     }
                 }
             }

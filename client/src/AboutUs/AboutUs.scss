@@ -7,7 +7,9 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-
+  @media only screen and (max-width:800px) {
+    width: 85%;
+  }
   h1 {
     font-size: 2vw;
     color: rgb(204, 204, 204);

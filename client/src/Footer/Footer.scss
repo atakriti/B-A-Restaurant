@@ -95,6 +95,12 @@
 
 // ====================== Media query ==============
 @media only screen and (max-width:800px) {
+    .footer-content{
+        width: 85%;
+        margin-left: auto;
+        margin-top: 5%;
+        padding-top: 4%;
+    }
     .footer-content h3{
         font-size: 3vw;
         }

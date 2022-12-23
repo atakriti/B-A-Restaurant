@@ -83,3 +83,26 @@ header{
         }
     }
 }
+
+// ===================== 
+@media only screen and (max-width:800px) {
+    header{
+        width: 15%;
+        .header_container{
+            .links_pages{
+
+                a{
+                    svg{
+                        font-size: 5vw;
+                    }
+                    .cart_length{
+                        font-size: 4vw;
+                    }
+                }
+            }
+            h4{
+                font-size: 3vw;
+            }
+        }
+    }
+}

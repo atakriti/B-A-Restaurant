@@ -25,15 +25,17 @@
 }
 
 // ================== Media query ===============
-// @media only screen and (max-width:800px) {
-//     .slider-main{
-//         .slider{
-//             width: 100%;
-//             img{
-//                 height: 50vw;
-//                 border-radius: 20px;
-//             }
-//         }
-//     }
-// }
+@media only screen and (max-width:800px) {
+    .slider-main{
+        .slider{
+            width: 100%;
+            img{
+                height: 60vw;
+            }
+            h3{
+                font-size: 3vw;
+            }
+        }
+    }
+}
 

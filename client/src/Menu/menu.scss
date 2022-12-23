@@ -2,55 +2,87 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2% 0; 
-  h1{
-      font-size: 2vw;
+  margin: 2% 0;
+  h1 {
+    font-size: 2vw;
+    color: white;
   }
- div{
-     overflow: hidden;
-     div{
-         div{
-          
-             .--right{
-                 cursor: pointer;
-                 img{
-                     width: 100%;
-                     height: 100%;
-                     object-fit: cover;
-                    }
-                    &::after{
-                     position: absolute;
-                     top: 0;
-                     right: 0;
-                     left: 0;
-                     bottom: 0;
-                     z-index: 1;
-                     content: attr(data-info);
-                     display: flex;
-                     justify-content: center;
-                     align-items: center;
-                    color: white;
-                    font-size: 3vw;
-                    filter: drop-shadow(2px 2px 4px black);
-                 }
+  div {
+    overflow: hidden;
+    div {
+      div {
+        .--right {
+          cursor: pointer;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            content: attr(data-info);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3vw;
+            filter: drop-shadow(2px 2px 4px black);
+          }
+        }
+      }
+    }
+  }
+  .menu_btns {
+    margin: 2% 0;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 48%;
+      border: none;
+      outline: none;
+      background-color: orange;
+      color: white;
+      font-size: 0.9vw;
+      border-radius: 10px;
+    }
+  }
+}
 
-             }
+// ===============
+@media only screen and (max-width: 800px) {
+  .menu {
+    overflow: hidden;
+    h1 {
+      font-size: 4vw;
+    }
+    div {
+      div {
+        div {
+          .--right {
              
-         }
-     }
- }
- .menu_btns{
-     margin: 2% 0;
-     width: 20%;
-     display: flex;
-     justify-content: space-between;
-     button{
-         width: 48%;
-         border: none;
-         outline: none;
-         background-color: orange;
-         color: white;
-         font-size: 0.9vw;
-     }
- }
+            &::after {
+              font-size: 6vw;
+            }
+          }
+        }
+      }
+    }
+    .menu_btns {
+      width: 50%;
+      button {
+        font-size: 3vw;
+        padding: 3% 0;
+        &:active {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+  }
 }

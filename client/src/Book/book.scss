@@ -185,3 +185,83 @@
 .MuiDialogActions-root,.css-1hbyad5-MuiTypography-root {
     display: none !important;
 }
+// ============================= Media query======================
+@media only screen and (max-width:800px) {
+    .book_{
+        .book_container{
+            width: 85%;
+            form{
+              h1{
+                  font-size: 3vw;
+              }
+              h2{
+                  font-size: 3vw;
+              }
+              .form_container{
+                  flex-wrap: wrap;
+                  .date{
+                      width: 100%;
+
+                  }
+                  .time{
+                      width: 100%;
+                      label{
+                          padding: 2%;
+                          h3{
+                              font-size: 3vw;
+                              margin: 0;
+                          }
+                          input{
+                              width: 3vw;
+                              height: 3vw;
+                          }
+                          .btns_persons{
+                              width: 50%;
+                            h6{
+                                font-size: 3vw;
+                            }
+                            h4{
+                                font-size: 3vw;
+                            }
+                          }
+                      }
+                  }
+              }
+
+              .submitBtn{
+                  font-size: 3vw;
+                  width: 40%;
+                  padding: 2% 0; 
+              }
+            }
+        }
+        // ================= Review ============
+        .reviews{
+            width: 85%;
+            margin-left: auto;
+            h1{
+                font-size: 3vw;
+            }
+            .reviews_container{
+                .userReview{
+                    width: 48%;
+                    a{
+                        width: 40%;
+                    }
+                    h1{
+                        font-size: 3vw;
+                    }
+                    span{
+                        h3{
+                            font-size: 3vw;
+                        }
+                    }
+                    h4{
+                        font-size: 3vw;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

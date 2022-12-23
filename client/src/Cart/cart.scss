@@ -148,3 +148,54 @@
     }
   }
 }
+// ===================
+@media only screen and (max-width:800px) {
+  .cart_{
+    .cart_container{
+      width: 85%;
+      .cart_left{
+        width: 50%;
+        .cart_box{
+          h1{
+            font-size: 2.5vw;
+            width: 50%;
+          }
+          h4{
+            &:nth-child(n + 2):nth-child(-n + 4){
+              display: none;
+            }
+          }
+          button{
+            width: 30%;
+            font-size: 2vw;
+          }
+        }
+      }.cart_right{
+        width: 50%;
+        .cart_right_invoice{
+          h1{
+            font-size: 3vw;
+          }
+          .singleInvoice{
+            h2,h3{
+              font-size: 2vw;
+            }
+            h2{
+              width: 50%;
+            }
+            h5{
+              font-size: 2vw;
+            }
+          }
+        }
+        h2{
+          font-size: 3vw;
+        }
+        button{
+          font-size: 2vw;
+          width: 40%;
+        }
+      }
+    }
+  }
+}

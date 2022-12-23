@@ -18,7 +18,9 @@
             h2{
                 font-size: 1.2vw;
                 color: white;
+                margin: 0;
                 margin-left: 2%;
+
             }
 
         }
@@ -96,7 +98,10 @@
             width: 100%;
             border: 1px black solid;
             display: flex;
+            border-radius: 20px;
             input{
+            border-radius: 20px 0 0 20px;
+
                 width: 90%;
                 border: none;
                 outline: none;
@@ -104,6 +109,8 @@
                 padding: 1%;
             }
             button{
+            border-radius: 0 20px 20px 0;
+
                 width: 10%;
                 font-size: 1vw;
                 border: none;
@@ -111,6 +118,61 @@
                 cursor: pointer;
                 background-color: orange;
                 color: white;
+            }
+        }
+    }
+}
+
+// ====================
+@media only screen and (max-width:800px) {
+    .userChat{
+        flex-wrap: wrap;
+        width: 85%;
+        margin-left: auto;
+        justify-content: space-between;
+        .left{
+            width: 100%;
+            .chatWithChef{
+                svg{
+                    font-size: 4vw;
+                }
+                h2{
+                    font-size: 3vw;
+                }
+            }
+        }
+        .right{
+            width: 100%;
+            h1{
+                font-size: 3vw;
+            }
+            .chatField{
+                height: 75vh;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+                .leftText,.rightText{
+                    h6{
+                        font-size: 2vw;
+                    }
+                    p{
+                        font-size: 2.5vw;
+                        padding: 4%;
+                    }
+                    h5{
+                        font-size: 2vw;
+                    }
+                }
+
+            }
+            form{
+                input{
+                    font-size: 3vw;
+                    padding: 2%;
+                }
+                button{
+                    font-size: 2vw;
+                }
             }
         }
     }
