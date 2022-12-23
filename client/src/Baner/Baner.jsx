@@ -3,6 +3,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./baner.scss"
 import test from "../images/test.jpg"
+import a from "./images/a.jpg";
+import b from "./images/b.jpg";
+import c from "./images/c.jpg";
+import d from "./images/d.jpg";
+import e from "./images/e.jpg";
+
 function Baner() {
   return (
   <div className="slider-main">
@@ -28,7 +34,7 @@ function Baner() {
         
           <img className='d-block w-100'
 
-            src={test}
+            src={a}
 
             alt="Second slide"
           />
@@ -42,7 +48,7 @@ function Baner() {
         
           <img className='d-block w-100'
 
-            src={test}
+            src={b}
 
             alt="Third slide"
           />
@@ -56,7 +62,7 @@ function Baner() {
         
           <img className='d-block w-100'
 
-            src={test}
+            src={e}
 
             alt="Fourth slide"
           />
@@ -70,7 +76,7 @@ function Baner() {
         
           <img className='d-block w-100'
 
-            src={test}
+            src={d}
 
             alt="Fifth slide"
           />
