@@ -66,6 +66,13 @@ let result = FullDate + "–" + FullTime
     await axios.delete("http://localhost:4000/deleteAllChats")
     alert("The chats from the Chat Schema is now empty")
   }
+  let handleEmptyUserChat = async  (user) => {
+    await axios.put(`http://localhost:4000/emptyChat/${user._id}`)
+    alert(`the Chat of ${user.username} is now empty`)
+    fetchUsers().then(result => setUsers(result))
+
+  }
+
   //! ==================================== Here end the chat =============================
   //! ==================================== Here the Add product =============================
   let [productValue, setProductValue] = useState({
@@ -157,7 +164,8 @@ let result = FullDate + "–" + FullTime
         <span className={switchSections === 5 && "selected"} onClick={()=>setSwitchSections(5)}><MdOutlinePreview/><h3>Customers Reviews</h3></span>
         <span className={switchSections === 6 && "selected"} onClick={()=>setSwitchSections(6)}><BsFillCalendarDateFill/><h3>Reservations</h3></span>
         <span className={switchSections === 7 && "selected"} onClick={()=>setSwitchSections(7)}><MdUpdate/><h3>Archive</h3></span>
-        <span className={switchSections === 7 && "selected"} onClick={()=>navigate("/")}><FaHome /><h3>Home</h3></span>
+          <span className={switchSections === 7 && "selected"} onClick={() => navigate("/")}><FaHome /><h3>Home</h3></span>
+          <h3 className='info'>INFO: Double Click on user to empty his chat</h3>
 
       </div>
       {/* =============== right ========== */}
@@ -196,7 +204,7 @@ let result = FullDate + "–" + FullTime
            <div className="chatFieldAdmin">
           <div className="chatLeft">
             {users.map((user,i) => (
-              <button className={user.messageSent && "messageSent"} key={i} onClick={()=>handleClickOnUser(user)} title={user.email}>{ user.username}</button>
+              <button className={user.messageSent && "messageSent"} key={i} onDoubleClick={()=>handleEmptyUserChat(user)} onClick={()=>handleClickOnUser(user)} title={user.email}>{ user.username}</button>
           ))}
           </div>
               <div  className="chatTexts">
@@ -206,7 +214,7 @@ let result = FullDate + "–" + FullTime
 
 
                 {users.find(item => item?._id === selectedUserToChat?._id)?.chat.map(singleChat => (
-                  <span ref={scrollIntoViewRef} className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
+                  <span  ref={scrollIntoViewRef} className={singleChat.from === "639d98fe13b1053bdd4945fc" ? "righ" : "lef"}>
                     <h6>{ singleChat.sender}</h6>
                     <p>{singleChat.text}</p>
                     <h5>{ singleChat.timeStamp}</h5>
