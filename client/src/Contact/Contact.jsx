@@ -3,8 +3,7 @@ import Header from '../Header/Header';
 import Logo from "../images/logo.png"
 import "./Contact.scss"
 import emailjs from '@emailjs/browser';
-// import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 
 function Contact() {

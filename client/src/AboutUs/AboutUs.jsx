@@ -27,7 +27,7 @@ function AboutUs() {
           <h3>Anwar Takriti</h3>
         </span>
       </div>
-      <button onClick={() => setShowTeam(true)}>
+      <button className='button' onClick={() => setShowTeam(true)}>
         Meat Team
       </button>
       {showTeam && (

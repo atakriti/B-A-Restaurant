@@ -94,10 +94,12 @@
             button{
                 width: 20%;
                 padding: 1% 0;
-                .sendButton{
-                    font-size: 4vw;
-                }
+                font-size: 4vw;
             }
+            button:disabled{
+                 color: aliceblue;
+                 font-size: 5vw;
+             }
 
         }
     }
