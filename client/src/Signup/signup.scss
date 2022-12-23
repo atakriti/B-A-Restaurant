@@ -151,3 +151,56 @@
         }
     }
 }
+// ====================
+@media only screen and (max-width:800px) {
+    .signup{
+        .signup-container{
+            width: 90%;
+            .titles{
+                button{
+                    font-size: 3vw;
+                    width: 17%;
+                  
+                }
+                .line{
+                    font-size: 3vw;
+                    width: 17%;
+
+                    &::after{
+                        height: 17vw;
+                    }
+                }
+            }
+            form{
+                article{
+                    font-size: 4vw;
+                }
+                h4{
+                    font-size: 3vw;
+                }
+                span{
+                    flex-wrap: wrap;
+                    input{
+                        width: 100%;
+                    }
+                }
+                input{
+                    font-size: 3vw;
+                }
+                button{
+                    font-size: 3vw;
+                    width: 30%;
+                    &:active{
+                        background-color: black;
+                        color: white;
+                    }
+                    &:hover{
+                        box-shadow: none;
+                        color: black;
+                        background-color: white;
+                    }
+                }
+            }
+        }
+    }
+}

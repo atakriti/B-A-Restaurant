@@ -110,10 +110,10 @@ function Freelance() {
           <div className="form_bottom">
               {/* ====================== */}
               <div className="agrement">
-              <span>
-                <input onChange={()=>setIsAgreed(!isAgreed)} type="checkbox" name="" id="" />
+              <label htmlFor="agreement">
+                <input onChange={()=>setIsAgreed(!isAgreed)} type="checkbox" name="" id="agreement" />
                 <h3>I Agree</h3>
-              </span>
+              </label>
               <p>
                 The published meal or drink MUST NOT include any traces of alcohol
                 or pork or any materials that contain drugs, harmful herbs, or

@@ -80,7 +80,7 @@
                 padding: 1%;
                 border-radius: 10px;
                 .agrement{
-                    span{
+                    label{
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
@@ -216,6 +216,102 @@
                             padding: 1% 0;
                             border: none;
                             outline: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// ============================== 
+@media only screen and (max-width:800px) {
+    .freelance_{
+        .freelance_container{
+            width: 85%;
+            .form_container{
+                form{
+                    .form_left{
+                        width: 100%;
+                        input{
+                            padding: 2%;
+                            font-size: 3vw;
+                        }
+                    }
+                    .type{
+                        width: 100%;
+                        h3{
+                            font-size: 3vw;
+                        }
+                        label{
+                            width: 100%;
+                            padding: 2%;
+                            h5{
+                                font-size: 3vw;
+                            }
+                            input{
+                                width: 3vw;
+                                height: 3vw;
+                            }
+                        }
+                    }
+                    .form_bottom{
+                        width: 100%;
+                        .agrement{
+                            label{
+                                width: 30%;
+                                h3{
+                                    font-size: 3vw;
+                                }
+                                input{
+                                    width: 3vw;
+                                    height: 3vw;
+                                }
+                               
+                            }
+                            p{
+                                font-size: 3vw;
+                            }
+                        }
+                        button{
+                            font-size: 3vw;
+                            width: 30%;
+                        }
+                    }
+                }
+            }
+
+            .showMeals_{
+                .showMeals_container{
+                    .meal_{
+                        width: 100%;
+                        h1{
+                            font-size: 4vw;
+                        }
+                        h3{
+                            font-size: 3vw;
+                        }
+                        ul{
+                            height: 15vw;
+                            &::-webkit-scrollbar{
+                                width: 0.3vw;
+                            }
+                            li{
+                                font-size: 3vw;
+                            }
+                        }
+                        .mealImg_{
+                            img{
+                                height: 50vw;
+                            }
+                        }
+                        .meal_btns{
+                            padding: 4%;
+                            a{
+                                font-size: 3vw;
+                            }
+                            button{
+                                font-size: 3vw;
+                            }
                         }
                     }
                 }
