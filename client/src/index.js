@@ -1,4 +1,6 @@
 import React from 'react';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BrowserRouter} from "react-router-dom"
@@ -13,3 +15,5 @@ root.render(
     </Context>
     </BrowserRouter>
 );
+reportWebVitals();
+serviceWorkerRegistration.register();
