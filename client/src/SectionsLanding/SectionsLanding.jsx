@@ -4,6 +4,8 @@ import chef from "../images/chef.png";
 import calender from "../images/calender.jpg";
 import { Link } from "react-router-dom";
 import androidPic from "../images/android.jpg"
+import Application from "../app.apk"
+
 function SectionsLanding() {
   return (
     <div className="sectionsLanding">
@@ -47,7 +49,7 @@ function SectionsLanding() {
           <a className="androidImg"><img src={androidPic} alt="" /></a>
           <div className="androidText">
           <p>Surprise.... you can download this website as an App on your android smartphone, and discover our restaurant offline</p>
-          <a href="">Download App</a>
+          <a href={Application} download={Application}>Download App</a>
           </div>
         </div>   
       </div>
