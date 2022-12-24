@@ -49,7 +49,7 @@ function Header() {
               <Link title="Book a table" to="/book"><SlCalender/></Link>
               <Link  title="Work as a freelancer" to="/freelance"><SiCodechef/></Link>
               <Link  title="About us" to="/aboutUs"><BsQuestionCircle/></Link>
-                  <Link  title="Home" to="/"><FaHome /></Link>
+                  <Link  title="Home" to="/home2"><FaHome /></Link>
                   {isSignedIn ?
                   (<a  onClick={handleSignOut} title='Sign out'><FaSignInAlt /></a>)
                   :
