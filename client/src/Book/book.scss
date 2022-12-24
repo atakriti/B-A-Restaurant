@@ -24,6 +24,7 @@
                 // ===================== Date ==================
             .date{
                 width: 58%;
+                
               
             }
             // ======================== Time ===============
@@ -150,36 +151,7 @@
     }
 }
 // ================================== Style Date picker ==========================
-.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
-    h4{
-        color: white;
-    }
-}
-.css-u0soqy-MuiPickerStaticWrapper-root{
-    div{
-        background-color: transparent;
 
-    }
-}
-.css-6t5f1e-MuiDayPicker-monthContainer{
-    *{
-        color: black !important;
-        &:hover{
-            color: white !important;
-        }
-        &:focus{
-            color: white !important;
-        }
-        
-    }
-}
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
-    background-color: rgb(190, 190, 190) !important;
-    color: white !important;
-}
-.MuiDialogActions-root,.css-1hbyad5-MuiTypography-root {
-    display: none !important;
-}
 // ============================= Media query======================
 @media only screen and (max-width:800px) {
     .book_{
