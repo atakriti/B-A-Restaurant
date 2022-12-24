@@ -17,6 +17,7 @@ import Book from "./Book/Book";
 import Footer from "./Footer/Footer"
 
 function App() {
+  // I made the home2 to make the logo go to it, and not render the useEffect 
 
 let {openRegister} = useContext(context)
   return (
