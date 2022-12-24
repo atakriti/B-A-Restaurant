@@ -25,6 +25,13 @@
             .date{
                 width: 58%;
                 border: 1px red solid;
+                div{
+                    div{
+                        &:first-of-type{
+                            background-color: transparent;
+                        }
+                    }
+                }
               
             }
             // ======================== Time ===============
@@ -151,9 +158,7 @@
     }
 }
 // ================================== Style Date picker ==========================
-.MuiPickerStaticWrapper-content{
-    background-color: transparent !important;
-}
+
 .MuiDialogActions-root{
     display: none !important;
 }
