@@ -142,7 +142,7 @@ function Food() {
                      <button onClick={handlePlus}>+</button>
                    </div>
                  )}
-                  <h5>Total {foundMealState?.quan * foundMealState?.price}</h5>
+                  <h5>Total {foundMealState?.quan * foundMealState?.price}€</h5>
                   <button
                     disabled={isSignedIn === false}
                     onClick={handleAddToCart}
