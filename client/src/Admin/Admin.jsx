@@ -164,7 +164,7 @@ let result = FullDate + "–" + FullTime
         <span className={switchSections === 5 && "selected"} onClick={()=>setSwitchSections(5)}><MdOutlinePreview/><h3>Customers Reviews</h3></span>
         <span className={switchSections === 6 && "selected"} onClick={()=>setSwitchSections(6)}><BsFillCalendarDateFill/><h3>Reservations</h3></span>
         <span className={switchSections === 7 && "selected"} onClick={()=>setSwitchSections(7)}><MdUpdate/><h3>Archive</h3></span>
-          <span className={switchSections === 7 && "selected"} onClick={() => navigate("/")}><FaHome /><h3>Home</h3></span>
+          <span className={switchSections === 8 && "selected"} onClick={() => navigate("/")}><FaHome /><h3>Home</h3></span>
           <h3 className='info'>INFO: Double Click on user to empty his chat</h3>
 
       </div>
