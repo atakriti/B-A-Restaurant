@@ -164,7 +164,7 @@ app.get("*", (req, res) => {
  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
-//! ===================================== Deployment ends ===============
+//! ===================================== Deployment ends ================
 // ===================================== Pusher ========================
 const pusher = new Pusher({
     appId: process.env.APPID,
