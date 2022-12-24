@@ -5,7 +5,7 @@ import Pusher from 'pusher-js'
 export let context = createContext()
 function Context({ children }) {
   let fetchUsers = async () => {
-    let fetching = await fetch("http://localhost:4000/getAllUsers")
+    let fetching = await fetch("/getAllUsers")
     let json = await fetching.json()
     return json
   }
@@ -23,14 +23,14 @@ function Context({ children }) {
 
 
   let fetchingProducts = async () => {
-    let fetching = await fetch("http://localhost:4000/getProducts")
+    let fetching = await fetch("/getProducts")
     let json = await fetching.json()
     return json
   }
   let [products, setProducts] = useState([])
 
   let fetchingFreelance = async () => {
-    let fetching = await fetch("http://localhost:4000/getFreelance")
+    let fetching = await fetch("/getFreelance")
     let json = await fetching.json()
     return json
   }

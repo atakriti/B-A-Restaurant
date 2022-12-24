@@ -76,7 +76,7 @@ function Book() {
         e.preventDefault()
         if (isSignedIn === true) {
             setFoundUserState({...foundUserState,book:bookValue})
-            await axios.put(`http://localhost:4000/pushBook/${foundUserState._id}`, bookValue)
+            await axios.put(`/pushBook/${foundUserState._id}`, bookValue)
             alert("Your booking is successfully done")
             setBookValue({
                 date: "",
@@ -102,7 +102,7 @@ function Book() {
     // useEffect(() => {
     //     if (currentDate > expirationDate) {
     //         setIsExpired(true);
-    //         axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, {...foundUserState,book:{}})
+    //         axios.put(`/updateUser/${foundUserState?._id}`, {...foundUserState,book:{}})
     //         setFoundUserState({
     //             ...foundUserState, book:{}})
     //       }

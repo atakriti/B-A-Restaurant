@@ -30,7 +30,7 @@ let result = FullDate + "–" + FullTime
 
     let handleSubmitChat = async (e) => {
         e.preventDefault()
-        await axios.put(`http://localhost:4000/pushChat/${findSignedin._id}`, {...chatValue,from:findSignedin?._id,sender:findSignedin?.username})
+        await axios.put(`/pushChat/${findSignedin._id}`, {...chatValue,from:findSignedin?._id,sender:findSignedin?.username})
         setChatValue({
             text: "",
             from: "",
@@ -42,8 +42,8 @@ let result = FullDate + "–" + FullTime
         if (item.from === foundUserState._id) {
             let filterChats = foundUserState.chat.filter(it => it._id !== item._id)
             setFoundUserState({...foundUserState,chat:filterChats})
-            await axios.delete(`http://localhost:4000/deleteChat/${item._id}`)
-            await axios.put(`http://localhost:4000/updateUser/${findSignedin._id}`, { ...foundUserState, chat: filterChats })
+            await axios.delete(`/deleteChat/${item._id}`)
+            await axios.put(`/updateUser/${findSignedin._id}`, { ...foundUserState, chat: filterChats })
             fetchUsers().then((result) => setUsers(result));
         }
        

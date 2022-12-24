@@ -26,7 +26,7 @@ function Freelance() {
     e.preventDefault()
     let formData = new FormData(e.target)
     if (isSignedIn) {
-      await axios.post(`http://localhost:4000/freelance/${findUserId?._id}`, formData, freelanceValue, {
+      await axios.post(`/freelance/${findUserId?._id}`, formData, freelanceValue, {
         headers:{"Content-Type":"multipart/form-data"}
       })
     fetchingFreelance().then(result => setFreelanceMeals(result))
@@ -50,7 +50,7 @@ function Freelance() {
   }
 
   let handleDelete = async (item) => {
-    await axios.delete(`http://localhost:4000/deleteFreelanceMeal/${item._id}`)
+    await axios.delete(`/deleteFreelanceMeal/${item._id}`)
     fetchingFreelance().then(result => setFreelanceMeals(result))
 
   }
@@ -136,7 +136,7 @@ function Freelance() {
                 <ul>{item.description.split(",").map(item => <li>{ item}</li>)}</ul>
                 <h3>{item.address} <MdLocationPin/></h3>
                 <h3>{ item.chefName}</h3>
-                <a className="mealImg_"><img src={`http://localhost:4000${item.image}`} alt="" /></a>
+                <a className="mealImg_"><img src={`${item.image}`} alt="" /></a>
                 <div className="meal_btns">
                   <a data-tel={item.tel} href={`tel:+${item.tel}`}>Call</a>
                   {item?.userId === findUserId?._id && (

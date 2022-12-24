@@ -20,7 +20,7 @@ function Review() {
     let handleSubmit =async (e) => {
         e.preventDefault()
         // setFoundUserState({...foundUserState,comment:})
-        await axios.put(`http://localhost:4000/pushCommentAndRate/${foundUserState._id}`, reviewValue)
+        await axios.put(`/pushCommentAndRate/${foundUserState._id}`, reviewValue)
         alert("Thank you for your Submit")
         setShowReview(false)
     fetchUsers().then((result) => setUsers(result));

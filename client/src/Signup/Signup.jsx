@@ -32,7 +32,7 @@ function Signup() {
         if (users.some(user => user.email === signupValue.email)) {
             alert("This user is allready exist !")
         }  else if (signupValue.password === rePassword) {
-            await axios.post("http://localhost:4000/newUser", signupValue)
+            await axios.post("/newUser", signupValue)
             setSignupValue({
                 username: "",
                 email: "",

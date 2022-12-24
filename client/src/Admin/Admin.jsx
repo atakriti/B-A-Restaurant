@@ -46,7 +46,7 @@ let result = FullDate + "–" + FullTime
 })
   let handleSubmitChat = async (e) => {
     e.preventDefault()
-    await axios.put(`http://localhost:4000/pushChatAdmin/${selectedUserToChat._id}`, {...chatValue,from:"639d98fe13b1053bdd4945fc",sender:"Admin"})
+    await axios.put(`/pushChatAdmin/${selectedUserToChat._id}`, {...chatValue,from:"639d98fe13b1053bdd4945fc",sender:"Admin"})
     setChatValue({
       text: "",
       from: "639d98fe13b1053bdd4945fc",
@@ -57,17 +57,17 @@ let result = FullDate + "–" + FullTime
   }
 
   let handleClickOnUser = async (user) => {
-    await axios.put(`http://localhost:4000/messageSentOff/${user._id}`)
+    await axios.put(`/messageSentOff/${user._id}`)
     setSelectedUserToChat(user)
     // setColorSelectedUser(true)
   }
 
   let handleDeleteAllChat = async () => {
-    await axios.delete("http://localhost:4000/deleteAllChats")
+    await axios.delete("/deleteAllChats")
     alert("The chats from the Chat Schema is now empty")
   }
   let handleEmptyUserChat = async  (user) => {
-    await axios.put(`http://localhost:4000/emptyChat/${user._id}`)
+    await axios.put(`/emptyChat/${user._id}`)
     alert(`the Chat of ${user.username} is now empty`)
     fetchUsers().then(result => setUsers(result))
 
@@ -91,7 +91,7 @@ let result = FullDate + "–" + FullTime
   let handleAddProduct = async (e) => {
     e.preventDefault()
     let formData = new FormData(e.target)
-    await axios.post("http://localhost:4000/addProduct", formData, productValue, {
+    await axios.post("/addProduct", formData, productValue, {
       headers:{"Content-Type":"multipart/form-data"}
     })
     alert("The product is Successfully added")
@@ -112,7 +112,7 @@ let result = FullDate + "–" + FullTime
   //! ==================================== Here End the Add product =============================
   // =============================== Preview Products ==============================
   let handleDeleteProduct = async (item) => {
-    await axios.delete(`http://localhost:4000/deleteProduct/${item._id}`)
+    await axios.delete(`/deleteProduct/${item._id}`)
     fetchingProducts().then(result => setProducts(result))
 
   }

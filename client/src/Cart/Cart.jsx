@@ -28,7 +28,7 @@ function Cart() {
 
 
       setFoundUserState({ ...foundUserState, cart: [] })
-      await axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: [] })
+      await axios.put(`/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: [] })
       fetchUsers().then(result => setUsers(result))
       if (foundUserState.comment === undefined && foundUserState.rate === undefined) {
           setTimeout(() => setShowReview(true), 3600)
@@ -46,7 +46,7 @@ function Cart() {
         let findMeal = findSignedInUser?.cart.filter(it => it._id !== item._id)
         setFoundUserState({...foundUserState,cart:findMeal})
 
-        await axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: findMeal })
+        await axios.put(`/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: findMeal })
         fetchUsers().then(result => setUsers(result))
     }
    

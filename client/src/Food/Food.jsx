@@ -62,7 +62,7 @@ function Food() {
         cartArchive: sameFood,
       });
       await axios.put(
-        `http://localhost:4000/updateUser/${foundUserState?._id}`,
+        `/updateUser/${foundUserState?._id}`,
         { ...foundUserState, cart: sameFood, cartArchive: sameFood }
       );
       alert("The quantity changed");
@@ -75,14 +75,14 @@ function Food() {
       cart: [...foundUserState.cart, foundMealState],
       cartArchive: [...foundUserState.cartArchive, foundMealState],
     });
-    await axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, {
+    await axios.put(`/updateUser/${foundUserState?._id}`, {
       ...foundUserState,
       cart: [...foundUserState.cart, foundMealState],
       cartArchive: [...foundUserState.cartArchive, foundMealState],
     });
 
     await axios.put(
-      `http://localhost:4000/updateProduct/${foundMealState?._id}`,
+      `/updateProduct/${foundMealState?._id}`,
       { rate: foundMealState.rate + 1 }
     );
     fetchingProducts().then((result) => setProducts(result));
@@ -109,7 +109,7 @@ function Food() {
             {/* ================== Front =============== */}
             <div className={"front_"}>
               <a className="foodImg">
-                <img src={`http://localhost:4000${item.image}`} alt="" />
+                <img src={`${item.image}`} alt="" />
               </a>
               <h1>{item.name[0].toUpperCase() + item.name.slice(1)}</h1>
               <div className="textBox_">
