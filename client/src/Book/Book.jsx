@@ -140,12 +140,12 @@ function Book() {
                                   parseDateValue === parseFullDate ? 
                                   Number(single.split(":")[0]) > parseFullTime &&  (
                                     <label htmlFor={single}>
-                                    <h3>{single}</h3>
+                                    <h3>{filterBooked?.some(item => item?.book?.time === single) ? "Reserved" : single}</h3>
                                  <input  onChange={(e) => setBookValue({...bookValue,time:e.target.value})} disabled={filterBooked?.some(item => item?.book?.time === single) } type="radio" name="time" id={single} value={single} />
                                  </label>
                                       ) : (
                                         <label htmlFor={single}>
-                                        <h3>{single}</h3>
+                                        <h3>{filterBooked?.some(item => item?.book?.time === single) ? "Reserved" : single}</h3>
                                      <input  onChange={(e) => setBookValue({...bookValue,time:e.target.value})} disabled={filterBooked?.some(item => item?.book?.time === single) } type="radio" name="time" id={single} value={single} />
                                      </label>
                               )
