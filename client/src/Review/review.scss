@@ -42,3 +42,24 @@
         }
     }
 }
+// ===============
+@media only screen and (max-width:800px) {
+    .reviewSubmit{
+        form{
+            width: 100%;
+            padding: 3%;
+            h1{
+                font-size: 3vw;
+            }
+            input{
+                font-size: 2.5vw;
+                padding: 2%;
+            }
+            button{
+                font-size: 3vw;
+                width: 70%;
+                padding: 2% 0;
+            }
+        }
+    }
+}

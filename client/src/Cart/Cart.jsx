@@ -18,13 +18,20 @@ function Cart() {
     let handlePay = async () => {
         if (isSignedIn === true) {
             setIsPopup(true)
-      setTimeout(() => setIsPopup(false), 3000)
+            setTimeout(() => setIsPopup(false), 3600)
+            // ================ Speak ===============
+            let text = "Thank you for your visiting, you can't pay, because this website is Demo"
+            let speach = new SpeechSynthesisUtterance(text)
+            speach.pitch = 1
+            window.speechSynthesis.speak(speach)
+            // ============= Speak end ==============
+
 
       setFoundUserState({ ...foundUserState, cart: [] })
       await axios.put(`http://localhost:4000/updateUser/${foundUserState?._id}`, { ...foundUserState, cart: [] })
       fetchUsers().then(result => setUsers(result))
       if (foundUserState.comment === undefined && foundUserState.rate === undefined) {
-          setTimeout(() => setShowReview(true), 3000)
+          setTimeout(() => setShowReview(true), 3600)
       }
         } else {
             alert("You are not signed in")

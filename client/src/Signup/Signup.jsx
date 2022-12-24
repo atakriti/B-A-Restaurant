@@ -4,7 +4,7 @@ import "./signup.scss"
 import axios from "axios"
 import { context } from '../Context'
 function Signup() {
-    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers,changeValueSignin, setChangeValueSignin } = useContext(context)
+    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers,changeValueSignin, setChangeValueSignin,isSigninToSpeak,setIsSigninToSpeak } = useContext(context)
     
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
@@ -73,6 +73,7 @@ function Signup() {
             })
             setOpenRegister(false)
             navigate("/")
+            setIsSigninToSpeak(true)
         } else if (changeValueSignin.email === "admin-ba@baTeam.com" && changeValueSignin.password === "Admin123") {
             navigate("/admin") 
             setSigninValue({
