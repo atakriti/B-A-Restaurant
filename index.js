@@ -20,16 +20,7 @@ app.use(cors())
 app.use(express.json())
 app.listen(process.env.PORT || 5000, () => console.log("server is listening..."))
 mongoose.connect(process.env.MONGO)
-//! ======================================== Deployment ========================
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
- 
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) => {
- res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
 
-//! ===================================== Deployment ends ===============
 // ================== users ===============
 app.post("/newUser", async (req, res) => {
     await User.create(req.body).then(result => res.json(result))
@@ -164,6 +155,16 @@ app.get("/getFreelance", async (req, res) => {
 app.delete("/deleteFreelanceMeal/:id", async (req, res) => {
     await Freelance.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
 })
+//! ======================================== Deployment ========================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+ 
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) => {
+ res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
+//! ===================================== Deployment ends ===============
 // ===================================== Pusher ========================
 const pusher = new Pusher({
     appId: process.env.APPID,
