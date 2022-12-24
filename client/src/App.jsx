@@ -1,4 +1,5 @@
 import Home from "./Home";
+import Home2 from "./Home2";
 import React, { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Admin from "./Admin/Admin";
@@ -23,6 +24,7 @@ let {openRegister} = useContext(context)
       {openRegister && <Signup />}
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/home2" element={<Home2/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/userChat" element={<UserChat />} />
         <Route path="/freelance" element={<Freelance />} />

@@ -35,7 +35,7 @@ function Header() {
   return (
       <header>
           <div className="header_container">
-              <Link title="Home" to="/">
+              <Link title="Home" to="/home2">
               <img src={logo} alt="" />
               </Link>
 
