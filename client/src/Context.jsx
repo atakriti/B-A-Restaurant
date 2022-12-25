@@ -51,6 +51,10 @@ function Context({ children }) {
 let scrollIntoViewRef = useRef(null)
 
   useEffect(() => {
+    setIsLoadingUsers(true)
+    setIsLoadingProducts(true)
+    setIsLoadingFreelance(true)
+
     fetchUsers().then((result)=>setUsers(result)).then(()=>setIsLoadingUsers(false))
     fetchingProducts().then((result)=> setProducts(result)).then(()=>setIsLoadingProducts(false))
     fetchingFreelance().then((result)=>setFreelanceMeals(result)).then(()=>setIsLoadingFreelance(false))
