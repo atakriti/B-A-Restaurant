@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import "./signup.scss"
 import axios from "axios"
 import { context } from '../Context'
+import loading from "../images/loading.gif"
+
 function Signup() {
-    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers,changeValueSignin, setChangeValueSignin,isSigninToSpeak,setIsSigninToSpeak } = useContext(context)
+    let { users, setUsers, signinValue, setSigninValue,isSignedIn,setIsSignedIn,setOpenRegister,fetchUsers,changeValueSignin, setChangeValueSignin,isSigninToSpeak,setIsSigninToSpeak,isLoadingUsers } = useContext(context)
     
     console.log("🚀 ~ file: Signup.jsx:8 ~ Signup ~ signinValue", signinValue)
     let [switchBtn, setSwitchBtn] = useState(1)
@@ -92,7 +94,12 @@ function Signup() {
     }, [switchBtn])
     
   return (
-      <div  className='signup'>
+      <div className='signup'>
+           {isLoadingUsers && (
+              <div className="loading">
+                  <img src={loading} alt="" />
+              </div>
+          )}
           <div className="signup-container">
              
               {/* ===================== Titles ================== */}

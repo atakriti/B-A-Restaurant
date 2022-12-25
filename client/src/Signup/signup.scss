@@ -10,6 +10,21 @@
     justify-content: center;
     padding-top: 5%;
     overflow-y: scroll;
+    .loading{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 11;
+        background-color: rgba(0, 0, 0, 0.658);
+        img{
+            width: 3%;
+        }
+    }
     .signup-container{
         width: 40%;
        

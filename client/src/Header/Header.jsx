@@ -12,12 +12,11 @@ import {FaSignInAlt} from "react-icons/fa"
 import {BiUser} from "react-icons/bi"
 import { context } from '../Context'
 function Header() {
-    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue,setIsSigninOutSpeak } = useContext(context)
+    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue } = useContext(context)
     let findSignedInUser = users.find(user => user.email === signinValue.email)
     console.log("🚀 ~ file: Header.jsx:16 ~ Header ~ isSignedIn", isSignedIn)
     let handleSignOut = () => {
         // setOpenRegister(true)
-        setIsSigninOutSpeak(true)
         setIsSignedIn(false)
         setSigninValue({
             email: "",
