@@ -26,64 +26,8 @@
                 width: 58%;
                 div{
                     div{
-                        background-color: transparent;
-                        div{
-                            div{
-                                span{
-                                    display: none;
-                                }
-                                div{
-                                    h4{
-                                        color: white;
-                                    }
-                                    button{
-                                        svg{
-                                            fill: white;
-                                        }
-                                    }
-                                }
-                            }
-                            div{
-                                div{
-                                    div{
-                                        div{
-                                            div{
-                                                div{
-                                                   color: white;
-                                                }
-                                                button {
-                                                    svg{
-                                                        fill: white;
-                                                    }
-                                                }
-                                               
-                                            }
-                                        }
-                                        div{
-                                           button{
-                                            svg{
-                                                fill: white;
-                                            }
-                                           }  
-                                           button{
-                                            svg{
-                                                fill: white;
-                                            }       
-                                        }
-                                    }
-                                }
-                              div{
-                                div{
-                                    div{
-                                        
-                                       span{
-                                        color: white !important; 
-                                       }
-                                       
-                                    }
-                                }
-                              }
-                            }
+                        &:first-of-type{
+                            background-color: transparent;
                         }
                     }
                 }
@@ -214,6 +158,94 @@
 }
 // ================================== Style Date picker ==========================
 
+.MuiDialogActions-root{
+    display: none !important;
+}
+.MuiTypography-overline{
+    display: none !important;
+}
+.MuiDatePickerToolbar-title{
+    color: white !important;
+}
+.MuiPickersToolbar-penIconButton{
+    // color: white !important;
+    svg{
+        color: white !important;
+    }
+}
+.MuiPickersCalendarHeader-labelContainer{
+    div{
+        color: white !important;
+    }
+    button{
+        svg{
+            color: white !important;
+        }
+    }
+} 
+.MuiPickersArrowSwitcher-root{
+    button{
+        svg{
+            color: white !important;
+        }
+    }
+}
+.MuiDayPicker-header{
+    span{
+        color: white !important;
+    }
+}
+.MuiDayPicker-weekContainer{
+    button{
+        &:hover{
+            color: white !important;
+        }
+        &:focus{
+            color: white !important;
+        }
+    }
+}
+.MuiYearPicker-root{
+    div{
+        button{
+            color: white !important;
+
+        }
+    }
+}
+.MuiInputBase-input{
+    color: white !important;
+}
+// .css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
+//     h4{
+//         color: white;
+//     }
+// }
+// .css-u0soqy-MuiPickerStaticWrapper-root{
+//     div{
+//         background-color: transparent;
+
+//     }
+// }
+// .css-6t5f1e-MuiDayPicker-monthContainer{
+//     *{
+//         color: black !important;
+//         &:hover{
+//             color: white !important;
+//         }
+//         &:focus{
+//             color: white !important;
+//         }
+        
+//     }
+// }
+// .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+//     background-color: rgb(190, 190, 190) !important;
+//     color: white !important;
+// }
+// .MuiDialogActions-root,.css-1hbyad5-MuiTypography-root {
+//     display: none !important;
+// }
 // ============================= Media query======================
 @media only screen and (max-width:800px) {
     .book_{
@@ -293,4 +325,4 @@
             }
         }
     }
-}}
+}

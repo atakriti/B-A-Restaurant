@@ -4,8 +4,10 @@ import axios from "axios"
 import "./freelance.scss"
 import {MdLocationPin} from "react-icons/md"
 import { context } from "../Context";
+import loading from "../images/loading.gif"
+
 function Freelance() {
-  let { signinValue, users,isSignedIn,freelanceMeals,fetchingFreelance,setFreelanceMeals } = useContext(context)
+  let { signinValue, users,isSignedIn,freelanceMeals,fetchingFreelance,setFreelanceMeals,isLoadingFreelance } = useContext(context)
   console.log("🚀 ~ file: Freelance.jsx:8 ~ Freelance ~ freelanceMeals", freelanceMeals)
   let findUserId = users.find(user => user?.email === signinValue?.email)
   let [isAgreed,setIsAgreed] = useState(false)
@@ -56,6 +58,11 @@ function Freelance() {
   }
   return (
     <div className="freelance_">
+       {isLoadingFreelance && (
+          <div className="loading">
+          <img src={loading} alt="" />
+      </div>
+      )}
       <Header />
       <div className="freelance_container">
         <div className="form_container">

@@ -7,25 +7,18 @@ import SectionsLanding from './SectionsLanding/SectionsLanding'
 import Signup from './Signup/Signup'
 
 function Home() {
-  let { openRegister,isSigninToSpeak,isSigninOutSpeak } = useContext(context)
+  let { openRegister,isSigninToSpeak } = useContext(context)
   console.log("🚀 ~ file: Home.jsx:11 ~ Home ~ isSigninToSpeak", isSigninToSpeak)
   useEffect(() => {
     if (isSigninToSpeak === true) {
-      let text = "Welcome to our Restaurant, enjoy"
+      let text = "Welcome to our Restaurant"
          let speach = new SpeechSynthesisUtterance(text)
          speach.pitch = 1
          window.speechSynthesis.speak(speach)
       }
   }, [isSigninToSpeak])
   
-  useEffect(() => {
-    if (isSigninOutSpeak === true) {
-      let text = "Good bye"
-         let speach = new SpeechSynthesisUtterance(text)
-         speach.pitch = 1
-         window.speechSynthesis.speak(speach)
-      }
-  },[isSigninOutSpeak])
+ 
   return (
     <div>
       

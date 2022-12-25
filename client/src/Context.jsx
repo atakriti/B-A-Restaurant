@@ -19,7 +19,6 @@ function Context({ children }) {
     password:""
   })
   let [isSigninToSpeak,setIsSigninToSpeak] = useState(false)
-  let [isSigninOutSpeak,setIsSigninOutSpeak] = useState(false)
 
 
   let fetchingProducts = async () => {
@@ -37,7 +36,9 @@ function Context({ children }) {
   let [freelanceMeals,setFreelanceMeals] = useState([])
   let [showReview,setShowReview] = useState(false)
 
-
+  let [isLoadingUsers,setIsLoadingUsers] = useState(false)
+  let [isLoadingProducts,setIsLoadingProducts] = useState(false)
+  let [isLoadingFreelance,setIsLoadingFreelance] = useState(false)
 
 
   let [allChat, setAllChat] = useState([])
@@ -50,9 +51,13 @@ function Context({ children }) {
 let scrollIntoViewRef = useRef(null)
 
   useEffect(() => {
-    fetchUsers().then(result => setUsers(result))
-    fetchingProducts().then(result => setProducts(result))
-    fetchingFreelance().then(result => setFreelanceMeals(result))
+    setIsLoadingUsers(true)
+    setIsLoadingProducts(true)
+    setIsLoadingFreelance(true)
+
+    fetchUsers().then((result)=>setUsers(result)).then(()=>setIsLoadingUsers(false))
+    fetchingProducts().then((result)=> setProducts(result)).then(()=>setIsLoadingProducts(false))
+    fetchingFreelance().then((result)=>setFreelanceMeals(result)).then(()=>setIsLoadingFreelance(false))
   }, [])
 
   useEffect(() => {
@@ -77,14 +82,14 @@ let scrollIntoViewRef = useRef(null)
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
   }, [selectedUserToChat])
-
+  
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
-    scrollIntoViewRef?.current?.scrollIntoView({behavior: 'smooth' })
+    scrollIntoViewRef?.current?.scrollIntoView({behavior: 'smooth' }) // this is causing alot of count sending messages in pusher.com
   }, [allChat])
   
   return (
-      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview,scrollIntoViewRef,changeValueSignin, setChangeValueSignin,isSigninToSpeak,setIsSigninToSpeak,isSigninOutSpeak,setIsSigninOutSpeak}}>{ children}</context.Provider>
+      <context.Provider value={{users,setUsers,signinValue, setSigninValue,fetchingProducts,products,setProducts,fetchUsers,setUsers,allChat,setAllChat,selectedUserToChat,setSelectedUserToChat,isSignedIn,setIsSignedIn,openRegister,setOpenRegister,fetchingFreelance,freelanceMeals,setFreelanceMeals,showReview,setShowReview,scrollIntoViewRef,changeValueSignin, setChangeValueSignin,isSigninToSpeak,setIsSigninToSpeak,isLoadingUsers,isLoadingProducts,isLoadingFreelance}}>{ children}</context.Provider>
   )
 }
 

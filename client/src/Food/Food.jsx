@@ -7,6 +7,8 @@ import Header from "../Header/Header";
 import "./food.scss";
 import cart_logo from "../images/cart-logo.png";
 import axios from "axios";
+import loading from "../images/loading.gif"
+
 function Food() {
   let {
     products,
@@ -17,6 +19,7 @@ function Food() {
     setUsers,
     fetchingProducts,
     setProducts,
+    isLoadingProducts
   } = useContext(context);
   let { type } = useParams();
   let findType = products.filter((item) => item.type === type);
@@ -99,6 +102,11 @@ function Food() {
   // <div onClick={()=>setIsFlip(i)} style={isFlip === i ? {transform: "rotateY(-180deg)"} : {transform: "rotateY(0deg)"} } className="food_box">
   return (
     <div className="food_">
+       {isLoadingProducts && (
+          <div className="loading">
+          <img src={loading} alt="" />
+      </div>
+      )}
       <Header />
       <div className="food_container">
         {findType.map((item, i) => (
@@ -142,7 +150,7 @@ function Food() {
                      <button onClick={handlePlus}>+</button>
                    </div>
                  )}
-                  <h5>Total {foundMealState?.quan * foundMealState?.price}</h5>
+                  <h5>Total {foundMealState?.quan * foundMealState?.price}€</h5>
                   <button
                     disabled={isSignedIn === false}
                     onClick={handleAddToCart}
