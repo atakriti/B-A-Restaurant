@@ -78,10 +78,10 @@ let scrollIntoViewRef = useRef(null)
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
   }, [selectedUserToChat])
-
+  
   useEffect(() => {
     fetchUsers().then(result => setUsers(result))
-    scrollIntoViewRef?.current?.scrollIntoView({behavior: 'smooth' })
+    scrollIntoViewRef?.current?.scrollIntoView({behavior: 'smooth' }) // this is causing alot of count sending messages in pusher.com
   }, [allChat])
   
   return (
