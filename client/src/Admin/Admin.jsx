@@ -88,9 +88,12 @@ let result = FullDate + "–" + FullTime
   let handleChangeProduct = (e) => {
     setProductValue({...productValue,[e.target.name]:e.target.value})
   }
+  let confirmAddProduct = ""
   let handleAddProduct = async (e) => {
     e.preventDefault()
-    let formData = new FormData(e.target)
+    confirmAddProduct = window.prompt("Confirm the password")
+    if (confirmAddProduct === "ab123456@") {
+      let formData = new FormData(e.target)
     await axios.post("/addProduct", formData, productValue, {
       headers:{"Content-Type":"multipart/form-data"}
     })
@@ -107,13 +110,24 @@ let result = FullDate + "–" + FullTime
       quan: 1,
       rate:1
     })
+    } else {
+      alert("The password is wrong !")
+    }
+    
 }
 
   //! ==================================== Here End the Add product =============================
   // =============================== Preview Products ==============================
+  let confirmDelete = ""
   let handleDeleteProduct = async (item) => {
-    await axios.delete(`/deleteProduct/${item._id}`)
-    fetchingProducts().then(result => setProducts(result))
+    confirmDelete = window.prompt("Confirm the password")
+    if (confirmDelete === "ab123456@") {
+      await axios.delete(`/deleteProduct/${item._id}`)
+      fetchingProducts().then(result => setProducts(result))    
+    } else {
+      alert("The password is wrong !")
+    }
+  
 
   }
   // =============================== End Preview Products ==============================
