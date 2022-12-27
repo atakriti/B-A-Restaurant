@@ -4,8 +4,10 @@ import "./userChat.scss"
 import {context} from "../Context"
 import axios from 'axios'
 import Header from '../Header/Header'
+import loading from "../images/loading.gif"
+
 function UserChat() {
-    let {signinValue,users,scrollIntoViewRef,fetchUsers,setUsers} = useContext(context)
+    let {signinValue,users,scrollIntoViewRef,fetchUsers,setUsers,isLoadingUsers} = useContext(context)
     let findSignedin = users.find(user => user.email === signinValue.email)
     let [foundUserState,setFoundUserState] = useState(findSignedin)
     console.log("🚀 ~ file: UserChat.jsx:8 ~ UserChat ~ findSignedin", findSignedin)
@@ -53,6 +55,11 @@ let result = FullDate + "–" + FullTime
     },[users])
   return (
       <div className='userChat'>
+            {isLoadingUsers && (
+              <div className="loading">
+                  <img src={loading} alt="" />
+              </div>
+          )}
       <Header/>
 
           {/* ============== Left ============ */}

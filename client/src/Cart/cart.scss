@@ -1,7 +1,24 @@
 .cart_ {
     background-color: rgb(36, 36, 36);
     min-height: 100vh;
-
+    .loading{
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 11;
+      background-color: rgba(0, 0, 0, 0.658);
+      img{
+          width: 3%;
+          @media only screen and (max-width:800px) {
+              width: 13%;
+          }
+      }
+  }
   .cart_container {
       padding: 1%;
     width: 95%;

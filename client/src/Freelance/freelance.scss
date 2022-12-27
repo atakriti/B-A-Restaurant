@@ -14,6 +14,9 @@
         background-color: rgba(0, 0, 0, 0.658);
         img{
             width: 3%;
+            @media only screen and (max-width:800px) {
+                width: 13%;
+            }
         }
     }
       .freelance_container{

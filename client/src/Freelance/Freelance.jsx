@@ -21,6 +21,7 @@ function Freelance() {
     address: "",
     chefName:""
   })
+  let [isPublished,setIsPublished] = useState(false)
   let handleChangeFreelance = (e) => {
     setFreelanceValue({...freelanceValue,[e.target.name]:e.target.value})
   }
@@ -28,10 +29,13 @@ function Freelance() {
     e.preventDefault()
     let formData = new FormData(e.target)
     if (isSignedIn) {
+      setIsPublished(true)
+
       await axios.post(`/freelance/${findUserId?._id}`, formData, freelanceValue, {
         headers:{"Content-Type":"multipart/form-data"}
       })
-    fetchingFreelance().then(result => setFreelanceMeals(result))
+      fetchingFreelance().then(result => setFreelanceMeals(result))
+      setIsPublished(false)
       alert("Your meal is successfully published")
       e.target.reset()
       setFreelanceValue({
@@ -59,6 +63,11 @@ function Freelance() {
   return (
     <div className="freelance_">
        {isLoadingFreelance && (
+          <div className="loading">
+          <img src={loading} alt="" />
+      </div>
+      )}
+      {isPublished && (
           <div className="loading">
           <img src={loading} alt="" />
       </div>
