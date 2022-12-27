@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import express from "express";
 import "dotenv/config";
 import cors from "cors"
+import { v2 as cloudinary } from 'cloudinary';
 // ===============
 import User from "./user.js"
 import Products from "./Products.js";
@@ -134,6 +135,11 @@ app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // ================================ Freelance =============================
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.CLOUD_KEY, 
+    api_secret: process.env.CLOUD_SECRET
+  });
 let freelanceImages = multer({
     dest:"./freelanceImages"
 })
@@ -141,13 +147,17 @@ app.use("/freelanceImages", express.static("./freelanceImages"));
 
 app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-    console.log(req.file.filename);
+    let result = await cloudinary.uploader.upload(req?.file?.path, {
+        public_id: `freelance_images/${req?.file?.filename}`,
+        tags: 'freelance_image'
+      });
+    console.log(result);
     await Freelance.create({
         meal,
         price,
         tel,
         type,
-        image: `/freelanceImages/${req.file.filename}`,
+        image: result.secure_url,
         userId: req.params.id,
         showAll,
         description,

@@ -143,13 +143,13 @@ function Freelance() {
         {/* ========================================================================  */}
         <div className="showMeals_">
           <div className="showMeals_container">
-            {freelanceMeals.map(item => (
+            {freelanceMeals?.map(item => (
               <div className="meal_">
                 <h1>Meal: {item.meal}</h1>
                 <h3>Type: {item.type}</h3>
-                <h3>Price: {item.price.toFixed(2)}€</h3>
+                <h3>Price: {item?.price?.toFixed(2)}€</h3>
                 <h3>Description: </h3>
-                <ul>{item.description.split(",").map(item => <li>{ item}</li>)}</ul>
+                <ul>{item.description?.split(",").map(item => <li>{ item}</li>)}</ul>
                 <h3>{item.address} <MdLocationPin/></h3>
                 <h3>{ item.chefName}</h3>
                 <a className="mealImg_"><img src={`${item.image}`} alt="" /></a>
