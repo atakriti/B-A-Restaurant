@@ -134,16 +134,20 @@ app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // ================================ Freelance =============================
+let freelanceImages = multer({
+    dest:"./freelanceImages"
+})
+app.use("/freelanceImages", express.static("./freelanceImages"));
 
-
-app.post("/freelance/:id",upload.single("image"), async (req, res) => {
+app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+    console.log(req.file.filename);
     await Freelance.create({
         meal,
         price,
         tel,
         type,
-        image: `/productsImages/${req.file.filename}`,
+        image: `/freelanceImages/${req.file.filename}`,
         userId: req.params.id,
         showAll,
         description,
