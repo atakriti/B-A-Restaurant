@@ -176,8 +176,8 @@ app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     try {
         let { meal, price, tel, type, showAll, description, address, chefName } = req.body
         let result = await cloudinary.uploader.upload(req?.file?.path, {
-            public_id: `freelance_images/${req?.file?.originalname}`,
-            tags: 'freelance_image'
+            public_id: `freelance_images/${req?.file?.filename}`, // to get the file name put instead of filename, originalname
+            tags: 'freelance_image',
           });
         await Freelance.create({
             meal,
