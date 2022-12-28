@@ -137,7 +137,7 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
-// ================================ Freelance =============================
+// ================================ Freelance ============================
 cloudinary?.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_KEY,
