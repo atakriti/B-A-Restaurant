@@ -135,23 +135,42 @@ app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // ================================ Freelance =============================
-cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME, 
-    api_key: process.env.CLOUD_KEY, 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
     api_secret: process.env.CLOUD_SECRET
   });
+  
 // let freelanceImages = multer({
 //     dest:"./freelanceImages"
 // })
 // app.use("/freelanceImages", express.static("./freelanceImages"));
 
-app.post("/freelance/:id", async (req, res) => {
+// app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
+//     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+//     console.log(req.file.filename);
+//     await Freelance.create({
+//         meal,
+//         price,
+//         tel,
+//         type,
+//         image: `/freelanceImages/${req.file.filename}`,
+//         userId: req.params.id,
+//         showAll,
+//         description,
+//         address,
+//         chefName
+//       }).then(result => res.json(result))
+// })
+// const storage = multer.memoryStorage();
+// const uploadImg = multer({ storage });
+let freelanceImages = multer({ dest: 'tmp/' });
+app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-    let result = await cloudinary.uploader.upload(req?.file?.path, {
+    let result = await cloudinary?.uploader?.upload(req?.file?.path, {
         public_id: `freelance_images/${req?.file?.filename}`,
-        tags: 'freelance_image',
+        tags: 'freelance_image'
       });
-    console.log(result);
     await Freelance.create({
         meal,
         price,
@@ -163,37 +182,10 @@ app.post("/freelance/:id", async (req, res) => {
         description,
         address,
         chefName
-      }).then(result => res.json(result))
+    }).then(result => res.json(result))
+    console.log(req.body);
 })
-// app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
-//     let { meal, price, tel, type, showAll, description, address, chefName } = req.body;
-//     let image = req.body.image;
-  
-//     // Read the image data from the file
-//     let imageData = fs.readFileSync(image);
-  
-//     // Upload the image to Cloudinary
-//     let result = await cloudinary.uploader.upload(imageData, {
-//       public_id: `freelance_images/${Date.now()}`,
-//       tags: 'freelance_image'
-//     });
-//     image = result.secure_url;
-  
-//     // Save the form data and image URL to the database
-//     await Freelance.create({
-//       meal,
-//       price,
-//       tel,
-//       type,
-//       image,
-//         userId: req.params.id,
-//         showAll,
-//         description,
-//         address,
-//         chefName
-//       }).then(result => res.json(result))
-// })
-// =====================
+
 app.get("/getFreelance", async (req, res) => {
     await Freelance.find().then(result => res.json(result))
 })
