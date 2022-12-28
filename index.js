@@ -8,6 +8,10 @@ import mongoose from "mongoose";
 import express from "express";
 import "dotenv/config";
 import cors from "cors"
+import { v2 as cloudinary } from 'cloudinary';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 // ===============
 import User from "./user.js"
 import Products from "./Products.js";
@@ -133,27 +137,61 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
-// ================================ Freelance =============================
-app.post("/freelance/:id",upload.single("image"), async (req, res) => {
-    let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-    await Freelance.create({
-        meal,
-        price,
-        tel,
-        type,
-        image: `/productsImages/${req.file.filename}`,
-        userId: req.params.id,
-        showAll,
-        description,
-        address,
-        chefName
-      }).then(result => res.json(result))
+// ================================ Freelance ============================
+cloudinary?.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
+    api_secret: process.env.CLOUD_SECRET
+  });
+  let storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'freelance_images'
+  });
+  let freelanceImages = multer({
+    storage: storage
+  });
+
+app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
+    try {
+        let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+        let result = await cloudinary.uploader.upload(req?.file?.path, {
+            public_id: `freelance_images/${req?.file?.filename}`, // to get the file name put instead of filename, originalname
+            tags: 'freelance_image',
+        });
+        req.file.public_id = result.public_id;
+        await Freelance.create({
+            meal,
+            price,
+            tel,
+            type,
+            image: result.secure_url,
+            userId: req.params.id,
+            showAll,
+            description,
+            address,
+            chefName,
+            img_public_id:req.file.public_id
+        }).then(result => res.json(result))
+        console.log("req.file", req.file);
+        // console.log("req?.file?.public_kid",req);
+    } catch (error) {
+        console.log(error);
+    }
+   
 })
+
 app.get("/getFreelance", async (req, res) => {
     await Freelance.find().then(result => res.json(result))
 })
 app.delete("/deleteFreelanceMeal/:id", async (req, res) => {
-    await Freelance.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
+    try {
+        let findImg = await Freelance.findById(req.params.id)
+         await cloudinary.uploader.destroy(findImg.img_public_id);
+        await Freelance.findByIdAndDelete({ "_id": req.params.id }, req.body).then(result => res.json(result))
+    } catch (error) {
+        console.log(error);
+    }
+  
 })
 //! ======================================== Deployment ========================
 const __filename = fileURLToPath(import.meta.url);

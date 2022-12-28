@@ -8,9 +8,10 @@ import "./book.scss"
 import { context } from '../Context';
 import axios from 'axios';
 import userLogo from "../images/user.png"
+import loading from "../images/loading.gif"
 
 function Book() {
-    let { users, isSignedIn ,signinValue,fetchUsers,setUsers} = useContext(context)
+    let { users, isSignedIn ,signinValue,fetchUsers,setUsers,isLoadingUsers} = useContext(context)
     let findUser = users.find((user) => user.email === signinValue.email);
     let timeArray = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00"]
 
@@ -109,6 +110,11 @@ function Book() {
     // },[])
   return (
       <div className='book_'>
+          {isLoadingUsers && (
+               <div className="loading">
+               <img src={loading} alt="" />
+           </div>
+          )}
           <Header />
           <div className="book_container">
               <form onSubmit={handleSubmit}>

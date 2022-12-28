@@ -5,10 +5,12 @@ import Header from '../Header/Header'
 import "./cart.scss"
 import axios from 'axios'
 import Review from "../Review/Review"
+import loading from "../images/loading.gif"
+
 function Cart() {
 
 
-    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue,fetchUsers, setUsers,products,showReview,setShowReview} = useContext(context)
+    let { isSignedIn, setIsSignedIn, openRegister, setOpenRegister, users, signinValue,setSigninValue,fetchUsers, setUsers,products,showReview,setShowReview,isLoadingUsers} = useContext(context)
     let findSignedInUser = users.find(found => found.email === signinValue.email)
 
     let [foundUserState, setFoundUserState] = useState(findSignedInUser)
@@ -68,6 +70,11 @@ function Cart() {
     
   return (
       <div className='cart_'>
+           {isLoadingUsers && (
+               <div className="loading">
+               <img src={loading} alt="" />
+           </div>
+          )}
           {showReview && (
           <Review/>
           )}
