@@ -9,6 +9,10 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors"
 import { v2 as cloudinary } from 'cloudinary';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+// import CloudinaryStorage  from "multer-storage-cloudinary"
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 // ===============
 import User from "./user.js"
 import Products from "./Products.js";
@@ -135,15 +139,19 @@ app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
 // ================================ Freelance =============================
-cloudinary.config({
+cloudinary?.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_KEY,
     api_secret: process.env.CLOUD_SECRET
   });
-  
-let freelanceImages = multer({
-    dest:"./img"
-})
+  let storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'freelance_images' // the name of the folder in your Cloudinary account where the uploaded images should be stored
+   
+  });
+  let freelanceImages = multer({
+    storage: storage
+  });
 // app.use("/freelanceImages", express.static("./freelanceImages"));
 
 // app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
@@ -168,7 +176,7 @@ let freelanceImages = multer({
 app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     try {
         let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-        let result = await cloudinary.uploader.upload(`./img/${req?.file?.filename}`, {
+        let result = await cloudinary.uploader.upload(req?.file?.path, {
             public_id: `freelance_images/${req?.file?.filename}`,
             tags: 'freelance_image'
           });
