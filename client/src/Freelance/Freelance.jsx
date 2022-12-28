@@ -56,8 +56,10 @@ function Freelance() {
   }
 
   let handleDelete = async (item) => {
+    setIsPublished(true)
     await axios.delete(`/deleteFreelanceMeal/${item._id}`)
     fetchingFreelance().then(result => setFreelanceMeals(result))
+    setIsPublished(false)
 
   }
   return (

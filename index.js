@@ -146,31 +146,10 @@ cloudinary?.config({
   let storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     folder: 'freelance_images'
-   
   });
   let freelanceImages = multer({
     storage: storage
   });
-// app.use("/freelanceImages", express.static("./freelanceImages"));
-
-// app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
-//     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-//     console.log(req.file.filename);
-//     await Freelance.create({
-//         meal,
-//         price,
-//         tel,
-//         type,
-//         image: `/freelanceImages/${req.file.filename}`,
-//         userId: req.params.id,
-//         showAll,
-//         description,
-//         address,
-//         chefName
-//       }).then(result => res.json(result))
-// })
-// const storage = multer.memoryStorage();
-// const uploadImg = multer({ storage });
 
 app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     try {
@@ -178,7 +157,8 @@ app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
         let result = await cloudinary.uploader.upload(req?.file?.path, {
             public_id: `freelance_images/${req?.file?.filename}`, // to get the file name put instead of filename, originalname
             tags: 'freelance_image',
-          });
+        });
+        req.file.public_id = result.public_id;
         await Freelance.create({
             meal,
             price,
@@ -189,9 +169,11 @@ app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
             showAll,
             description,
             address,
-            chefName
+            chefName,
+            img_public_id:req.file.public_id
         }).then(result => res.json(result))
-        console.log("req.file",req.file);
+        console.log("req.file", req.file);
+        // console.log("req?.file?.public_kid",req);
     } catch (error) {
         console.log(error);
     }
@@ -202,7 +184,14 @@ app.get("/getFreelance", async (req, res) => {
     await Freelance.find().then(result => res.json(result))
 })
 app.delete("/deleteFreelanceMeal/:id", async (req, res) => {
-    await Freelance.findByIdAndDelete({"_id":req.params.id},req.body).then(result => res.json(result))
+    try {
+        let findImg = await Freelance.findById(req.params.id)
+         await cloudinary.uploader.destroy(findImg.img_public_id);
+        await Freelance.findByIdAndDelete({ "_id": req.params.id }, req.body).then(result => res.json(result))
+    } catch (error) {
+        console.log(error);
+    }
+  
 })
 //! ======================================== Deployment ========================
 const __filename = fileURLToPath(import.meta.url);
