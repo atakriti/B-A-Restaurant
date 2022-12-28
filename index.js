@@ -11,7 +11,6 @@ import cors from "cors"
 import { v2 as cloudinary } from 'cloudinary';
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-// import CloudinaryStorage  from "multer-storage-cloudinary"
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 // ===============
 import User from "./user.js"
@@ -146,7 +145,7 @@ cloudinary?.config({
   });
   let storage = new CloudinaryStorage({
     cloudinary: cloudinary,
-    folder: 'freelance_images' // the name of the folder in your Cloudinary account where the uploaded images should be stored
+    folder: 'freelance_images'
    
   });
   let freelanceImages = multer({
@@ -177,7 +176,7 @@ app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     try {
         let { meal, price, tel, type, showAll, description, address, chefName } = req.body
         let result = await cloudinary.uploader.upload(req?.file?.path, {
-            public_id: `freelance_images/${req?.file?.filename}`,
+            public_id: `freelance_images/${req?.file?.originalname}`,
             tags: 'freelance_image'
           });
         await Freelance.create({
