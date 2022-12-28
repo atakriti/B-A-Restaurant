@@ -141,9 +141,9 @@ cloudinary.config({
     api_secret: process.env.CLOUD_SECRET
   });
   
-// let freelanceImages = multer({
-//     dest:"./freelanceImages"
-// })
+let freelanceImages = multer({
+    dest:"./img"
+})
 // app.use("/freelanceImages", express.static("./freelanceImages"));
 
 // app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
@@ -164,26 +164,31 @@ cloudinary.config({
 // })
 // const storage = multer.memoryStorage();
 // const uploadImg = multer({ storage });
-let freelanceImages = multer({ dest: 'tmp/' });
+
 app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
-    let { meal, price, tel, type, showAll, description, address, chefName } = req.body
-    let result = await cloudinary?.uploader?.upload(req?.file?.path, {
-        public_id: `freelance_images/${req?.file?.filename}`,
-        tags: 'freelance_image'
-      });
-    await Freelance.create({
-        meal,
-        price,
-        tel,
-        type,
-        image: result.secure_url,
-        userId: req.params.id,
-        showAll,
-        description,
-        address,
-        chefName
-    }).then(result => res.json(result))
-    console.log(req.body);
+    try {
+        let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+        let result = await cloudinary.uploader.upload(`./img/${req?.file?.filename}`, {
+            public_id: `freelance_images/${req?.file?.filename}`,
+            tags: 'freelance_image'
+          });
+        await Freelance.create({
+            meal,
+            price,
+            tel,
+            type,
+            image: result.secure_url,
+            userId: req.params.id,
+            showAll,
+            description,
+            address,
+            chefName
+        }).then(result => res.json(result))
+        console.log("req.file",req.file);
+    } catch (error) {
+        console.log(error);
+    }
+   
 })
 
 app.get("/getFreelance", async (req, res) => {
