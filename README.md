@@ -10,7 +10,7 @@
 ##### About Project
 
 ###### B & A RESTAURANT
-With This Project if you are a good chef, you can easly publish your meal in the freelance section. There are many other sections in this project, and one of the most interesting sections in this project is the chat section, which enables you to communicate with customer service.
+If you are a good chef, with This Project you can easily publish your meal in the freelance section. There are many other sections in this project, and one of the most interesting sections in this project is the chat section, which enables you to communicate with customer service.
 
 ---
 
