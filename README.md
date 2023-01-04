@@ -49,7 +49,7 @@ LinkedIn: [Bahaaldean Hashim](https://www.linkedin.com/in/bahaaldean-hashim-5984
 
 ### Used Tools
 
-- [icons](https://fonts.google.com/icons?selected=Material+Icons)
+- [React-icons](https://react-icons.github.io/react-icons/)
 - [Google Fonts](https://fonts.google.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
