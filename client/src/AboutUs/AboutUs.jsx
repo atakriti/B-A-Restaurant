@@ -16,7 +16,7 @@ function AboutUs() {
     <div className="about-us">
       <Header />
       <h1>About Us</h1>
-      <p>We are a team of creative professionals who are passionate about designing and building beautiful and functional websites and applications.</p>
+      <p>We are a team of creative professionals Web Developers who are passionate about designing and building beautiful and functional websites and applications.</p>
       <div className="team-photo-container">
         <span>
           <a target={'_blank'} href="https://www-baha.vercel.app/"><img src={img} alt="Our team" /></a>
