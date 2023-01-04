@@ -10,7 +10,7 @@
 ##### About Project
 
 ###### B & A RESTAURANT
-If you are a good chef, with This Project you can easily publish your meal in the freelance section. There are many other sections in this project, and one of the most interesting sections in this project is the chat section, which enables you to communicate with customer service.
+If you are a good chef, with This Project you can easily publish your meal in the freelance section. There are many other sections in this project, and one of the most interesting sections in this project is the chat section, which enables you to communicate with customer service directly.
 
 ---
 
@@ -31,7 +31,7 @@ If you are a good chef, with This Project you can easily publish your meal in th
 - [ ] _Bootstrap_
 - [x] _npm_
 - [x] _node_
-- [x] _Sockit.IO_
+- [ ] _Sockit.IO_
 
 ---
 
