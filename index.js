@@ -137,7 +137,7 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 app.put("/updateProduct/:id", async (req, res) => {
     await Products.findByIdAndUpdate({"_id":req.params.id},req.body).then(result => res.json(result))
 })
-// ================================ Freelance ============================
+// ================================ Freelance =============================
 cloudinary?.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_KEY,
@@ -150,6 +150,26 @@ cloudinary?.config({
   let freelanceImages = multer({
     storage: storage
   });
+// app.use("/freelanceImages", express.static("./freelanceImages"));
+
+// app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
+//     let { meal, price, tel, type, showAll, description, address, chefName } = req.body
+//     console.log(req.file.filename);
+//     await Freelance.create({
+//         meal,
+//         price,
+//         tel,
+//         type,
+//         image: `/freelanceImages/${req.file.filename}`,
+//         userId: req.params.id,
+//         showAll,
+//         description,
+//         address,
+//         chefName
+//       }).then(result => res.json(result))
+// })
+// const storage = multer.memoryStorage();
+// const uploadImg = multer({ storage });
 
 app.post("/freelance/:id",freelanceImages.single("image"), async (req, res) => {
     try {

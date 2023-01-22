@@ -40,12 +40,13 @@
           &:hover{
               transition: 2s;
               transform: rotateY(-180deg);
+             
           }
             
 
             .front_{
                 backface-visibility: hidden;//! for flipp
-               
+             
     
             a{
                 display: flex;
@@ -108,7 +109,7 @@
                 height: 100%;//! for flipp
                 width: 100%;//! for flipp
                 transform: rotateY(180deg);//! for flipp
-                
+                background-color: rgb(36, 36, 36);
                 .back_container{
                     height: 90%;
                     padding: 1%;
