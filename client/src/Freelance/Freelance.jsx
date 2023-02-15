@@ -21,6 +21,7 @@ function Freelance() {
     address: "",
     chefName:""
   })
+  console.log("🚀 ~ file: Freelance.jsx:24 ~ Freelance ~ freelanceValue", freelanceValue)
   let [isPublished,setIsPublished] = useState(false)
   let handleChangeFreelance = (e) => {
     setFreelanceValue({...freelanceValue,[e.target.name]:e.target.value})
