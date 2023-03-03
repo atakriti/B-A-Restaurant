@@ -114,6 +114,7 @@ function Signup() {
                   <input required onChange={handleChangeSignin} value={changeValueSignin.password} type="password" name="password" placeholder='Enter your Passowrd...' />
                       <button>Sign in</button>
                       <article onClick={() => setOpenRegister(false)}>Close</article>
+                      <h6>Admin dashboard: <br />E-Mail: admin-ba@baTeam.com <br /> Password: Admin123 </h6>
               </form>
               )}
               {switchBtn === 2 && (
